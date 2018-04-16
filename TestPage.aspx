@@ -1,13 +1,6 @@
-﻿<%@ Page Language="C#" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Class1.cs" Inherits="Class1" %>
 
 <!DOCTYPE html>
-<script runat="server">
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        Label1.Text = TextBox1.Text + ", welcome";
-    }
-</script>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -22,6 +15,8 @@
         <p>
             <asp:Label ForeColor="SteelBlue"  ID="Label1" runat="server" Text="Label"></asp:Label>
         </p>
+        <asp:DetailsView ID="DetailsView1" runat="server" AllowPaging="True" Height="50px" Width="125px">
+        </asp:DetailsView>
     </form>
 </body>
 </html>
