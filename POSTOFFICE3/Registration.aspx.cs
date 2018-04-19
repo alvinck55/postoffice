@@ -9,7 +9,7 @@ namespace POSTOFFICE3
 {
     public partial class Registration : System.Web.UI.Page
     {
-        string connectionString = @"Server=tcp:postoffice-dbdbserver.database.windows.net,1433;Initial Catalog=POSTOFFICE2;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
         protected void Page_Load(object sender, EventArgs e)
         {
 
