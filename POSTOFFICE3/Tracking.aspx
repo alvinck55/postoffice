@@ -9,10 +9,13 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            Enter tracking number:<br />
-            <asp:TextBox ID="trackingNo" runat="server"></asp:TextBox>
+            Enter Tracking Number:<br />
         </div>
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:TextBox ID="TrackingNumberTextBox" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" OnClick="TrackPackage_Click" Text="Track" />
+        <p>
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        </p>
     </form>
 </body>
 </html>

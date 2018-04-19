@@ -8,8 +8,8 @@ using System.Data.SqlClient;
 
 namespace POSTOFFICE3
 {
-    public partial class Data : System.Web.UI.Page
-    {
+	public partial class Tracking : System.Web.UI.Page
+	{
         SqlConnection conn;
         SqlCommand command;
         SqlDataReader dataReader;
@@ -17,48 +17,43 @@ namespace POSTOFFICE3
         string output;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+		{
 
-        }
+		}
 
-        protected void SearchButton_Click(object sender, EventArgs e)
+        protected void TrackPackage_Click(object sender, EventArgs e)
         {
-            searchData();
+            trackPackage();
         }
-        private void searchData()
+        private void trackPackage()
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
             conn = new SqlConnection(connectionString);
- 
-                conn.Open();
 
-            sqlQuery = "SELECT * FROM POSTOFFICE3.TRACKING WHERE Tracking_no='" + trackingNoTextBox.Text + "'";
-                command = new SqlCommand(sqlQuery, conn);
-                dataReader = command.ExecuteReader();
-                output = "";
-                
+            conn.Open();
 
-                if (dataReader.HasRows)
+            sqlQuery = "SELECT * FROM POSTOFFICE2.dbo.TRACKING WHERE Tracking_no='" + TrackingNumberTextBox.Text + "'";
+            command = new SqlCommand(sqlQuery, conn);
+            dataReader = command.ExecuteReader();
+            output = "";
+
+
+            if (dataReader.HasRows)
+            {
+                while (dataReader.Read())
                 {
-                    while (dataReader.Read())
-                    {
-                        output = dataReader.GetString(dataReader.GetOrdinal("Status")) + dataReader.GetString(dataReader.GetOrdinal("Facility_ID")) + dataReader.GetString(dataReader.GetOrdinal("Delivery_Date"));
-                    }
-                    Label1.Text = output;
+                    output = dataReader.GetString(dataReader.GetOrdinal("Fname"));
                 }
-                else
-                {
-                    Label1.Text = "Incorrect tracking number.";
-                }
+                Label1.Text = output;
+            }
+            else
+            {
+                Label1.Text = "invalid tracking number";
+            }
 
-                dataReader.Close();
-                command.Dispose();
-                conn.Close();
-
-         
-
-            
-
+            dataReader.Close();
+            command.Dispose();
+            conn.Close();
         }
     }
 }
