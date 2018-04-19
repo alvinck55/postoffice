@@ -21,7 +21,7 @@ namespace POSTOFFICE3
 
         }
 
-        protected void searchButton_Click(object sender, EventArgs e)
+        protected void SearchButton_Click(object sender, EventArgs e)
         {
             searchData();
         }

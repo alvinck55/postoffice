@@ -12,5 +12,6 @@
             Home Page<br />
         </div>
     </form>
-</body>
+    <a href="Data.aspx">Data</a>
+    </body>
 </html>
