@@ -11,8 +11,9 @@
         <div>
             Enter Customer ID:<br />
             <asp:TextBox ID="customeridTextBox" runat="server"></asp:TextBox>
-            <asp:Button ID="searchButton" runat="server" OnClick="searchButton_Click" Text="Search" />
+            <asp:Button ID="searchButton" runat="server" OnClick="SearchButton_Click" Text="Search" />
         </div>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </form>
 </body>
 </html>

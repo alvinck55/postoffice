@@ -14,13 +14,14 @@ namespace POSTOFFICE3
         SqlCommand command;
         SqlDataReader dataReader;
         string sqlQuery;
+        string output;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void searchButton_Click(object sender, EventArgs e)
+        protected void SearchButton_Click(object sender, EventArgs e)
         {
             searchData();
         }
@@ -28,25 +29,35 @@ namespace POSTOFFICE3
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
             conn = new SqlConnection(connectionString);
-            try
-            {
+ 
                 conn.Open();
 
-                sqlQuery = "SELECT CUSTOMER.Fname FROM POSTOFFICE.CUSTOMER WHERE POSTOFFICE.CUSTOMER.Customer_ID ='" + customeridTextBox.Text + "'";
+            sqlQuery = "SELECT * FROM POSTOFFICE3.CUSTOMER WHERE Customer_ID='" + customeridTextBox.Text + "'";
                 command = new SqlCommand(sqlQuery, conn);
                 dataReader = command.ExecuteReader();
+                output = "";
+                
 
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        output = dataReader.GetString(dataReader.GetOrdinal("Fname"));
+                    }
+                    Label1.Text = output;
+                }
+                else
+                {
+                    Label1.Text = "invalid employee ID";
+                }
 
                 dataReader.Close();
                 command.Dispose();
                 conn.Close();
 
-            }
-            catch (Exception ex)
-            {
-                
+         
 
-            }
+            
 
         }
     }
