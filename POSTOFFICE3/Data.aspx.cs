@@ -32,7 +32,7 @@ namespace POSTOFFICE3
  
                 conn.Open();
 
-            sqlQuery = "SELECT * FROM POSTOFFICE3.CUSTOMER WHERE Customer_ID='" + customeridTextBox.Text + "'";
+                sqlQuery = "SELECT * FROM POSTOFFICE2.dbo.CUSTOMER WHERE Customer_ID='" + customeridTextBox.Text + "'";
                 command = new SqlCommand(sqlQuery, conn);
                 dataReader = command.ExecuteReader();
                 output = "";
