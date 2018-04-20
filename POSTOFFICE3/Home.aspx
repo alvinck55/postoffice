@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Welcome ot the Post Office Database</title>
+    <title>Welcome to the Post Office Database</title>
 </head>
 <body>
     
