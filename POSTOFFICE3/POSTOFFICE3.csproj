@@ -79,6 +79,7 @@
     <Content Include="Data.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Registration.aspx" />
+    <Content Include="Facilities.aspx" />
     <Content Include="Tracking.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -89,6 +90,9 @@
     </Compile>
     <Compile Include="Data.aspx.designer.cs">
       <DependentUpon>Data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facilities.aspx.designer.cs">
+      <DependentUpon>Facilities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -104,6 +108,10 @@
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facilities.aspx.cs">
+      <DependentUpon>Facilities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Tracking.aspx.cs">
       <DependentUpon>Tracking.aspx</DependentUpon>

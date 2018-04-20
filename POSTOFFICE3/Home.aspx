@@ -19,4 +19,5 @@
         </div>
     </form>
     <a href="Data.aspx">Data | </a><a href="Registration.aspx">Registration</a>  
+</body>
 </html>
