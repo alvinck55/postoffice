@@ -32,7 +32,7 @@ namespace POSTOFFICE3
 
             conn.Open();
 
-            sqlQuery = "SELECT * FROM POSTOFFICE2.dbo.TRACKING WHERE Tracking_no='" + TrackingNumberTextBox.Text + "'";
+            sqlQuery = "SELECT dbo.STATUS.Status FROM POSTOFFICE2.dbo.TRACKING, POSTOFFICE2.dbo.STATUS WHERE dbo.TRACKING.Tracking_no='" + TrackingNumberTextBox.Text + "' AND dbo.TRACKING.Status = dbo.STATUS.Status_ID";
             command = new SqlCommand(sqlQuery, conn);
             dataReader = command.ExecuteReader();
             output = "";
@@ -42,7 +42,7 @@ namespace POSTOFFICE3
             {
                 while (dataReader.Read())
                 {
-                    output = dataReader.GetString(dataReader.GetOrdinal("Fname"));
+                    output = dataReader.GetValue(dataReader.GetOrdinal("Status")).ToString();
                 }
                 Label1.Text = output;
             }
