@@ -11,7 +11,7 @@
     <a href="Home.aspx">Home</a>  |  <a href="#">Registration</a>
     <form id="form1" runat="server">
         <div>
-            //<asp:HiddenField ID ="hfCustomerID" runat="server" />
+            
             <p>First name: </p>
             <asp:TextBox ID="firstNameText" Text="" runat="server" />
             <p>Middle name: </p>

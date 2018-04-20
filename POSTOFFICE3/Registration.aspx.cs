@@ -68,7 +68,7 @@ namespace POSTOFFICE3
         void Clear()
         {
             firstNameText.Text = middleNameText.Text = lastNameText.Text = emailText.Text = phoneText.Text = phone2Text.Text = passwordText.Text = "";
-            hfCustomerID.Value = "";
+            //hfCustomerID.Value = "";
 
 
 
