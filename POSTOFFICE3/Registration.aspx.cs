@@ -49,8 +49,12 @@ namespace POSTOFFICE3
                         sqlCmd.Parameters.AddWithValue("@Phone2", phone2Text.Text.Trim());
                         sqlCmd.Parameters.AddWithValue("@Password", passwordText.Text.Trim());
                         sqlCmd.ExecuteNonQuery();
-                        Clear();
                         statusMessage.Text = "Account registered";
+                        Session["username"] = emailText.Text.Trim();
+                        Clear();
+
+                        Response.Redirect("newaddress.aspx");
+
                     }
                     catch (Exception ex)
                     {
