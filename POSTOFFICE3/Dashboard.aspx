@@ -11,7 +11,11 @@
         <div>
             <asp:Label ID="lblUserDetails" runat="server" Text="Label"></asp:Label>
             <br />
-            <a href="UpdateAddress.aspx">Address</a>
+            <a href="UpdateAddress.aspx">Update Address</a>
+            <br />
+            <a href="ShippingHistory.aspx">Shipping History</a>
+            <br />
+            <br />
             <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
         </div>
     </form>

@@ -78,11 +78,13 @@
   <ItemGroup>
     <Content Include="Dashboard.aspx" />
     <Content Include="Data.aspx" />
+    <Content Include="Customer.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="PackageEntry.aspx" />
     <Content Include="newaddress.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="Facilities.aspx" />
+    <Content Include="ShippingHistory.aspx" />
     <Content Include="Tracking.aspx" />
     <Content Include="UpdateAddress.aspx" />
     <Content Include="Web.config" />
@@ -101,6 +103,13 @@
     </Compile>
     <Compile Include="Data.aspx.designer.cs">
       <DependentUpon>Data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.aspx.cs">
+      <DependentUpon>Customer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer.aspx.designer.cs">
+      <DependentUpon>Customer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facilities.aspx.designer.cs">
       <DependentUpon>Facilities.aspx</DependentUpon>
@@ -137,6 +146,13 @@
     <Compile Include="Facilities.aspx.cs">
       <DependentUpon>Facilities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShippingHistory.aspx.cs">
+      <DependentUpon>ShippingHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShippingHistory.aspx.designer.cs">
+      <DependentUpon>ShippingHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tracking.aspx.cs">
       <DependentUpon>Tracking.aspx</DependentUpon>
