@@ -78,6 +78,7 @@
   <ItemGroup>
     <Content Include="Dashboard.aspx" />
     <Content Include="Data.aspx" />
+    <Content Include="Customer.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="PackageEntry.aspx" />
     <Content Include="newaddress.aspx" />
@@ -102,6 +103,13 @@
     </Compile>
     <Compile Include="Data.aspx.designer.cs">
       <DependentUpon>Data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.aspx.cs">
+      <DependentUpon>Customer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer.aspx.designer.cs">
+      <DependentUpon>Customer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facilities.aspx.designer.cs">
       <DependentUpon>Facilities.aspx</DependentUpon>
