@@ -30,7 +30,7 @@ WHERE ADDRESS.Address_ID = FACILITY.Address_ID AND FACILITY.Facility_ID = SHIPPI
                 <asp:ControlParameter ControlID="TrackingNumberTextBox" Name="Tracking_No" PropertyName="Text" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:DropDownList ID="DropDownList1" runat="server">
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="PostOffice" DataTextField="City" DataValueField="City" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
             <asp:ListItem>Drop Down 1</asp:ListItem>
             <asp:ListItem>Drop Down 2</asp:ListItem>
         </asp:DropDownList>
