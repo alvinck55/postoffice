@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace POSTOFFICE3
 {
-	public partial class ZipSearch : System.Web.UI.Page
+	public partial class customerSearch : System.Web.UI.Page
 	{
         SqlConnection conn;
         SqlCommand command;
@@ -21,18 +21,18 @@ namespace POSTOFFICE3
 
 		}
 
-        protected void zipSearch_Click(object sender, EventArgs e)
+        protected void customerSearch_Click(object sender, EventArgs e)
         {
-            zipSearch();
+            custSearch();
         }
-        private void zipSearch()
+        private void custSearch()
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
             conn = new SqlConnection(connectionString);
 
             conn.Open();
 
-            sqlQuery = "SELECT dbo.FACILITY.Facility_ID FROM POSTOFFICE2.dbo.FACILITY, POSTOFFICE2.dbo.ADDRESS WHERE dbo.ADDRESS.Zip='" + zipBox.Text + "' AND dbo.FACILITY.Address_ID = dbo.ADDRESS.Address_ID";
+            sqlQuery = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE (dbo.CUSTOMER.Fname='" + fName.Text + "' OR fName.Text IS NULL) AND (dbo.CUSTOMER.Minit='" + mInit.Text + "' OR mInit.Text IS NULL) AND (dbo.CUSTOMER.Lname='" + lName.Text + "' OR lName.Text IS NULL) AND (dbo.CUSTOMER.Email='" + email.Text + "' OR email.Text IS NULL) AND (dbo.CUSTOMER.Phone1='" + phone.Text + "' OR dbo.CUSTOMER.Phone2='" + phone.Text + "' OR phone.Text IS NULL) AND (dbo.ADDRESS.Street='" + street.Text + "' OR street.Text IS NULL) AND (dbo.ADDRESS.City='" + city.Text + "' OR city.Text IS NULL) AND (dbo.ADDRESS.State='" + state.Text + "' OR state.Text IS NULL) AND (dbo.ADDRESS.Zip='" + zip.Text + "' OR zip.Text IS NULL)";
             command = new SqlCommand(sqlQuery, conn);
             dataReader = command.ExecuteReader();
             output = "";
@@ -42,13 +42,13 @@ namespace POSTOFFICE3
             {
                 while (dataReader.Read())
                 {
-                    output = dataReader.GetValue(dataReader.GetOrdinal("Zip")).ToString();
+                    output = dataReader.GetValue(dataReader.GetOrdinal("custId")).ToString();
                 }
                 Label1.Text = output;
             }
             else
             {
-                Label1.Text = "There are no facilities serving that ZIP code.";
+                Label1.Text = "No matching customer.";
             }
 
             dataReader.Close();
