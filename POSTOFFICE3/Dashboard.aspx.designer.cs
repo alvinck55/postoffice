@@ -10,7 +10,7 @@
 namespace POSTOFFICE3 {
     
     
-    public partial class Home {
+    public partial class Dashboard {
         
         /// <summary>
         /// form1 control.
@@ -22,39 +22,21 @@ namespace POSTOFFICE3 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// usernameText control.
+        /// lblUserDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox usernameText;
+        protected global::System.Web.UI.WebControls.Label lblUserDetails;
         
         /// <summary>
-        /// passwordText control.
+        /// btnLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordText;
-        
-        /// <summary>
-        /// submitButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitButton;
-        
-        /// <summary>
-        /// statusMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label statusMessage;
+        protected global::System.Web.UI.WebControls.Button btnLogout;
     }
 }

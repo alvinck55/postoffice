@@ -20,15 +20,21 @@
             <Columns>
                 <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                 <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
+                <asp:BoundField DataField="Last_updated" HeaderText="Date &amp; Time" SortExpression="Last_updated" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="PostOffice" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT ADDRESS.City, ADDRESS.State
+        <asp:SqlDataSource ID="PostOffice" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT ADDRESS.City, ADDRESS.State, SHIPPING_HISTORY.Last_updated
 FROM ADDRESS, FACILITY, SHIPPING_HISTORY
-WHERE ADDRESS.Address_ID = FACILITY.Address_ID AND FACILITY.Facility_ID = SHIPPING_HISTORY.Facility_ID AND SHIPPING_HISTORY.Tracking_no = @Tracking_No">
+WHERE ADDRESS.Address_ID = FACILITY.Address_ID AND FACILITY.Facility_ID = SHIPPING_HISTORY.Facility_ID AND SHIPPING_HISTORY.Tracking_no = @Tracking_No ORDER BY SHIPPING_HISTORY.Last_updated DESC">
             <SelectParameters>
                 <asp:ControlParameter ControlID="TrackingNumberTextBox" Name="Tracking_No" PropertyName="Text" />
             </SelectParameters>
         </asp:SqlDataSource>
+        <asp:DropDownList ID="DropDownList1" runat="server">
+            <asp:ListItem>Drop Down 1</asp:ListItem>
+            <asp:ListItem>Drop Down 2</asp:ListItem>
+        </asp:DropDownList>
     </form>
+
 </body>
 </html>

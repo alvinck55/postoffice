@@ -10,7 +10,16 @@
 namespace POSTOFFICE3 {
     
     
-    public partial class Tracking {
+    public partial class New_Address {
+        
+        /// <summary>
+        /// addressStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label addressStatus;
         
         /// <summary>
         /// form1 control.
@@ -22,57 +31,66 @@ namespace POSTOFFICE3 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// TrackingNumberTextBox control.
+        /// addressDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TrackingNumberTextBox;
+        protected global::System.Web.UI.WebControls.Label addressDetails;
         
         /// <summary>
-        /// Button1 control.
+        /// streetText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.TextBox streetText;
         
         /// <summary>
-        /// Label1 control.
+        /// aptText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox aptText;
         
         /// <summary>
-        /// GridView1 control.
+        /// cityText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.TextBox cityText;
         
         /// <summary>
-        /// PostOffice control.
+        /// stateList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource PostOffice;
+        protected global::System.Web.UI.WebControls.DropDownList stateList;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// zipText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.TextBox zipText;
+        
+        /// <summary>
+        /// submitAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitAddress;
     }
 }
