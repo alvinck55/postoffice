@@ -121,6 +121,15 @@ namespace POSTOFFICE3 {
         protected global::System.Web.UI.WebControls.TextBox S_Zip_TextBox;
         
         /// <summary>
+        /// S_PostalCode_TextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox S_PostalCode_TextBox;
+        
+        /// <summary>
         /// TextBox8 control.
         /// </summary>
         /// <remarks>
@@ -182,6 +191,15 @@ namespace POSTOFFICE3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox R_Zip_TextBox;
+        
+        /// <summary>
+        /// R_PostalCode_TextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox R_PostalCode_TextBox;
         
         /// <summary>
         /// Button1 control.

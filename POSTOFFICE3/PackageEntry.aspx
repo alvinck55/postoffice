@@ -32,6 +32,7 @@
         <br />
         Sender Zip:<asp:TextBox ID="S_Zip_TextBox" runat="server"></asp:TextBox>
         <br />
+        Sender Postal Code:<asp:TextBox ID="S_PostalCode_TextBox" runat="server"></asp:TextBox>
         <br />
         <br />
         Receiver First Name:<asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
@@ -47,6 +48,8 @@
         Receiver State:<asp:TextBox ID="R_State_TextBox" runat="server"></asp:TextBox>
         <br />
         Receiver Zip:<asp:TextBox ID="R_Zip_TextBox" runat="server"></asp:TextBox>
+        <br />
+        Receiver Postal Code:<asp:TextBox ID="R_PostalCode_TextBox" runat="server"></asp:TextBox>
         <br />
         <br />
         <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
