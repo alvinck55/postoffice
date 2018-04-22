@@ -78,7 +78,7 @@ namespace POSTOFFICE3
                 if (string.IsNullOrEmpty(quer))
                     quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.ADDRESS.City= '" + city.Text + "'";
                 else
-                    quer += " AND dbo.ADDRESS.City= '" + street.Text + "'";
+                    quer += " AND dbo.ADDRESS.City= '" + city.Text + "'";
             }
             if (!string.IsNullOrEmpty(state.Text))
             {

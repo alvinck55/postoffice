@@ -16,7 +16,7 @@
         Street address: <asp:TextBox ID="street" runat="server"></asp:TextBox><br />
         City: <asp:TextBox ID="city" runat="server"></asp:TextBox><br />
         State: <asp:TextBox ID="state" runat="server"></asp:TextBox><br />
-        ZIP <asp:TextBox ID="zip" runat="server"></asp:TextBox><br />
+        ZIP: <asp:TextBox ID="zip" runat="server"></asp:TextBox><br />
         <asp:Button ID="Button1" runat="server" OnClick="customerSearch_Click" Text="Search" />
         <p>
             <asp:Label ID="Label1" runat="server" Text="Search"></asp:Label>
