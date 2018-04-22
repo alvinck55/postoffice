@@ -29,10 +29,72 @@ namespace POSTOFFICE3
         {
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
             conn = new SqlConnection(connectionString);
-
+            string quer = "";
             conn.Open();
-
-            sqlQuery = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE (dbo.CUSTOMER.Fname='" + fName.Text + "' OR fName.Text IS NULL) AND (dbo.CUSTOMER.Minit='" + mInit.Text + "' OR mInit.Text IS NULL) AND (dbo.CUSTOMER.Lname='" + lName.Text + "' OR lName.Text IS NULL) AND (dbo.CUSTOMER.Email='" + email.Text + "' OR email.Text IS NULL) AND (dbo.CUSTOMER.Phone1='" + phone.Text + "' OR dbo.CUSTOMER.Phone2='" + phone.Text + "' OR phone.Text IS NULL) AND (dbo.ADDRESS.Street='" + street.Text + "' OR street.Text IS NULL) AND (dbo.ADDRESS.City='" + city.Text + "' OR city.Text IS NULL) AND (dbo.ADDRESS.State='" + state.Text + "' OR state.Text IS NULL) AND (dbo.ADDRESS.Zip='" + zip.Text + "' OR zip.Text IS NULL)";
+            if (!string.IsNullOrEmpty(fName.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.CUSTOMER.Fname= '" + fName.Text + "'";
+                else
+                    quer += " AND dbo.CUSTOMER.Fname= '" + fName.Text + "'";
+            }
+            if (!string.IsNullOrEmpty(mInit.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.CUSTOMER.Minit= '" + mInit.Text + "'";
+                else
+                    quer += " AND dbo.CUSTOMER.Fname= '" + mInit.Text + "'";
+            }
+            if (!string.IsNullOrEmpty(lName.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.CUSTOMER.Lname= '" + lName.Text + "'";
+                else
+                    quer += " AND dbo.CUSTOMER.Fname= '" + lName.Text + "'";
+            }
+            if (!string.IsNullOrEmpty(email.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.CUSTOMER.Email= '" + email.Text + "'";
+                else
+                    quer += " AND dbo.CUSTOMER.Fname= '" + email.Text + "'";
+            }
+            if (!string.IsNullOrEmpty(phone.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE (dbo.CUSTOMER.Phone1= '" + phone.Text + "' OR dbo.CUSTOMER.Phone2 = '" + phone.Text + "')";
+                else
+                    quer += " AND (dbo.CUSTOMER.Phone1= '" + phone.Text + "' OR dbo.CUSTOMER.Phone2 = '" + phone.Text + "')";
+            }
+            if (!string.IsNullOrEmpty(street.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.ADDRESS.Street= '" + street.Text + "'";
+                else
+                    quer += " AND dbo.ADDRESS.Street= '" + street.Text + "'";
+            }
+            if (!string.IsNullOrEmpty(city.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.ADDRESS.City= '" + city.Text + "'";
+                else
+                    quer += " AND dbo.ADDRESS.City= '" + street.Text + "'";
+            }
+            if (!string.IsNullOrEmpty(state.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.ADDRESS.State= '" + state.Text + "'";
+                else
+                    quer += " AND dbo.ADDRESS.State= '" + state.Text + "'";
+            }
+            if (!string.IsNullOrEmpty(zip.Text))
+            {
+                if (string.IsNullOrEmpty(quer))
+                    quer = "SELECT dbo.CUSTOMER.Customer_ID FROM POSTOFFICE2.dbo.CUSTOMER, POSTOFFICE2.dbo.ADDRESS WHERE dbo.ADDRESS.Zip= '" + zip.Text + "'";
+                else
+                    quer += " AND dbo.ADDRESS.Zip= '" + zip.Text + "'";
+            }
+            sqlQuery = quer;
             command = new SqlCommand(sqlQuery, conn);
             dataReader = command.ExecuteReader();
             output = "";
