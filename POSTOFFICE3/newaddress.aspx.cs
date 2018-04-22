@@ -29,19 +29,28 @@ namespace POSTOFFICE3
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
-                string loginid = Session["username"].ToString();
-                sqlCon.Open();
-                SqlCommand sqlCmd = new SqlCommand("newaddress", sqlCon);
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-                sqlCmd.Parameters.AddWithValue("@Street", streetText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@city", cityText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@State", stateList.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@Zip", zipText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@aptn", aptText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@login", loginid);  
+                int zipcheck;
+                int.TryParse(zipText.Text, out zipcheck);
+                if (zipcheck == 0 || zipcheck > 99999)
+                {
+                    fieldStatus.Text = "invalid zip";
+                }
+                else
+                {
+                    string loginid = Session["username"].ToString();
+                    sqlCon.Open();
+                    SqlCommand sqlCmd = new SqlCommand("newaddress", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@Street", streetText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@city", cityText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@State", stateList.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@Zip", zipText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@aptn", aptText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@login", loginid);
 
-                sqlCmd.ExecuteNonQuery();
-                Response.Redirect("Dashboard.aspx");
+                    sqlCmd.ExecuteNonQuery();
+                    Response.Redirect("Dashboard.aspx");
+                }
 
 
             }

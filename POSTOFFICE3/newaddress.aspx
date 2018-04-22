@@ -72,6 +72,7 @@
             </asp:DropDownList>
             <p>Zip: </p>
             <asp:TextBox ID="zipText" Text="" runat="server" />
+            <asp:Label ID="fieldStatus" runat="server" Text="Please fill in all fields"></asp:Label>
             <asp:Button ID="submitAddress" runat="server" Text="Submit" OnClick="submitAddress_Click" />
         </div>
     </form>

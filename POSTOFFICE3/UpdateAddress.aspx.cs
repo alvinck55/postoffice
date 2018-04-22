@@ -41,21 +41,30 @@ namespace POSTOFFICE3
             {
 
 
-                
-                sqlCon.Open();
-                SqlCommand sqlCmd = new SqlCommand("updateaddress", sqlCon);
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-                //sqlCmd.CommandType = CommandType.StoredProcedure;
-                sqlCmd.Parameters.AddWithValue("@Street", streetText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@city", cityText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@State", stateText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@Zip", zipText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@aptn", aptnText.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@email", loginid);
+                int zipcheck;
+                int.TryParse(zipText.Text, out zipcheck);
+                if (zipcheck == 0 || zipcheck > 99999)
+                {
+                    statusMessage.Text = "invalid zip";
+                }
+                else
+                {
+                    sqlCon.Open();
+                    SqlCommand sqlCmd = new SqlCommand("updateaddress", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    //sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@Street", streetText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@city", cityText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@State", stateText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@Zip", zipText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@aptn", aptnText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@email", loginid);
 
-                sqlCmd.ExecuteNonQuery();
-                Clear();
-                statusMessage.Text = "updated successfully";
+                    sqlCmd.ExecuteNonQuery();
+                    Clear();
+                    statusMessage.Text = "updated successfully";
+                }
+                
             }
 
 

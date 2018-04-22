@@ -22,15 +22,32 @@ namespace POSTOFFICE3
         }
         protected void registerEventMethod(object sender, EventArgs args)
         {
+            long phonecheck;
+            long phonecheck2;
+            long.TryParse(phoneText.Text, out phonecheck);
+            long.TryParse(phone2Text.Text, out phonecheck2);
+
+
+
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 if (firstNameText.Text == "" || middleNameText.Text == "" || lastNameText.Text == "" || emailText.Text == "" || phoneText.Text == "" || passwordText.Text == "" || password2Text.Text == "")
                 {
-                    statusMessage.Text = "Please fill in require fields";
+                    statusMessage.Text = "Please fill in require fields" + phonecheck;
                 }
                 else if (passwordText.Text != password2Text.Text)
                 {
                     statusMessage.Text = "Passwords do not match";
+
+                }
+                else if (phonecheck < 1000000000 || phonecheck > 9999999999)
+                {
+                    statusMessage.Text = "Not a valid phone number";
+
+                }
+                else if(phone2Text.Text != "" && (phonecheck2 < 1000000000 || phonecheck2 > 9999999999))
+                {
+                    statusMessage.Text = "Not a valid phone number";
 
                 }
                 else
