@@ -17,7 +17,11 @@
         To Date<br />
         <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
         <br />
-        <asp:DropDownList ID="DropDownList1" runat="server">
+        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            <asp:ListItem Value="30">Last 30 days</asp:ListItem>
+            <asp:ListItem Value="60">Lasy 60 days</asp:ListItem>
+            <asp:ListItem Value="90">Last 90 days</asp:ListItem>
+            <asp:ListItem>Custom</asp:ListItem>
         </asp:DropDownList>
     </form>
 </body>
