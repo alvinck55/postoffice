@@ -11,7 +11,8 @@ namespace POSTOFFICE3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Calendar1.SelectedDate = DateTime.Today + TimeSpan.FromDays(-30);
+            Calendar2.SelectedDate = DateTime.Today;
         }
     }
 }
