@@ -7,19 +7,41 @@
     <title></title>
 </head>
 <body>
-    <p>Address</p>
+    <asp:Label ID="logText" runat="server" Text=""></asp:Label>
     <form id="form1" runat="server">
         <div>
-            <asp:Label ID="addressDetails" runat="server" Text="Label"></asp:Label>
-            <p>Street: </p>
-            <asp:TextBox ID="streetText" Text="" runat="server" />
-            <p>Apt #(optional): </p>
-            <asp:TextBox ID="phoneText" Text="" runat="server" />
-            <p>City: </p>
-            <asp:TextBox ID="cityText" Text="" runat="server" />
-            <p>State: </p>
-            <asp:DropDownList ID="stateText" runat="server" OnSelectedIndexChanged="stateText_SelectedIndexChanged">
-                <asp:ListItem>Alabama</asp:ListItem>
+            <asp:HiddenField ID="hfContactID" runat="server" />
+            <table>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label1" runat="server" Text="Street"></asp:Label>
+                    </td>
+                    <td colspan="2">
+                        <asp:TextBox ID="streetText" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label2" runat="server" Text="Apt # (optional)"></asp:Label>
+                    </td>
+                    <td colspan="2">
+                        <asp:TextBox ID="aptnText" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label3" runat="server" Text="City"></asp:Label>
+                    </td>
+                    <td colspan="2">
+                        <asp:TextBox ID="cityText" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <asp:Label ID="Label4" runat="server" Text="State"></asp:Label>
+                    </td>
+                    <td colspan="2">
+                        <asp:DropDownList ID="stateText" runat="server"><asp:ListItem>Alabama</asp:ListItem>
                 <asp:ListItem>Alaska</asp:ListItem>
                 <asp:ListItem>Arizona</asp:ListItem>
                 <asp:ListItem>Arkansas</asp:ListItem>
@@ -68,13 +90,43 @@
                 <asp:ListItem>Washington</asp:ListItem>
                 <asp:ListItem>West Virginia</asp:ListItem>
                 <asp:ListItem>Wisconsin</asp:ListItem>
-                <asp:ListItem>Wyoming</asp:ListItem>
-            </asp:DropDownList>
-            <p>Zip: </p>
-            <asp:TextBox ID="zipText" Text="" runat="server" />
-            
+                <asp:ListItem>Wyoming</asp:ListItem></asp:DropDownList>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <asp:Label ID="Label5" runat="server" Text="Zip"></asp:Label>
+                    </td>
+                    <td colspan="2">
+                        <asp:TextBox ID="zipText" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="statusMessage" runat="server" Text="Please fill in all required fields"></asp:Label>
+                    </td>
+                    
+                </tr>
+                  
+            </table>
+            <asp:Button ID="addressButton" runat="server" OnClick="Button1_Click" Text="Update Address" />
+            <asp:GridView ID="gvAddress" runat="server" AutoGenerateColumns="false">
+                <Columns>
+                    <asp:BoundField DataField="Street" HeaderText="Street" />
+                    <asp:BoundField DataField="aptn" HeaderText="Apt #" />
+                    <asp:BoundField DataField="City" HeaderText="City" />
+                    <asp:BoundField DataField="State" HeaderText="State" />
+                    <asp:BoundField DataField="Zip" HeaderText="Zip Code" />
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
          
         </div>
+      
     </form>
 </body>
 </html>
