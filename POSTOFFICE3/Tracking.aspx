@@ -5,14 +5,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            font-size: x-large;
+        }
+        .auto-style2 {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
+        <h1>Post Office Tracking</h1>
         <div>
             Enter Tracking Number:<br />
         </div>
         <asp:TextBox ID="TrackingNumberTextBox" runat="server"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" OnClick="TrackPackage_Click" Text="Track" />
+        <br />
+        <br />
+        <br />
+        <span class="auto-style1">Product &amp; Tracking Information</span><br />
+        <br />
+        <span class="auto-style2"><strong>Product Information:</strong></span><br />
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="PackageSource">
+            <Columns>
+                <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
+                <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
+                <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
+            </Columns>
+        </asp:GridView>
+        <asp:SqlDataSource ID="PackageSource" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Weight, TYPE.Type, PRIORITY.Priority
+FROM PACKAGE,TYPE,PRIORITY
+WHERE PACKAGE.Tracking_no = @Tracking_no AND PACKAGE.Priority = PRIORITY.Priority_ID AND PACKAGE.Types = TYPE.Type_ID">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="TrackingNumberTextBox" Name="Tracking_no" PropertyName="Text" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <p>
+            &nbsp;</p>
+        <p class="auto-style2">
+            <strong>Package Information:</strong></p>
         <p>
             <asp:Label ID="Label1" runat="server" Text="Track"></asp:Label>
         </p>
@@ -20,20 +53,18 @@
             <Columns>
                 <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                 <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
+                <asp:BoundField DataField="Zip" HeaderText="Zip" SortExpression="Zip" />
                 <asp:BoundField DataField="Last_updated" HeaderText="Date &amp; Time" SortExpression="Last_updated" />
+                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="PostOffice" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT ADDRESS.City, ADDRESS.State, SHIPPING_HISTORY.Last_updated
-FROM ADDRESS, FACILITY, SHIPPING_HISTORY
-WHERE ADDRESS.Address_ID = FACILITY.Address_ID AND FACILITY.Facility_ID = SHIPPING_HISTORY.Facility_ID AND SHIPPING_HISTORY.Tracking_no = @Tracking_No ORDER BY SHIPPING_HISTORY.Last_updated DESC">
+        <asp:SqlDataSource ID="PostOffice" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT ADDRESS.City, ADDRESS.State,ADDRESS.Zip, SHIPPING_HISTORY.Last_updated, STATUS.Status
+FROM ADDRESS, FACILITY, SHIPPING_HISTORY, STATUS
+WHERE ADDRESS.Address_ID = FACILITY.Address_ID AND FACILITY.Facility_ID = SHIPPING_HISTORY.Facility_ID AND SHIPPING_HISTORY.Status = STATUS.Status_ID AND SHIPPING_HISTORY.Tracking_no = @Tracking_No ORDER BY SHIPPING_HISTORY.Last_updated DESC">
             <SelectParameters>
                 <asp:ControlParameter ControlID="TrackingNumberTextBox" Name="Tracking_No" PropertyName="Text" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="PostOffice" DataTextField="City" DataValueField="City" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-            <asp:ListItem>Drop Down 1</asp:ListItem>
-            <asp:ListItem>Drop Down 2</asp:ListItem>
-        </asp:DropDownList>
     </form>
 
 </body>
