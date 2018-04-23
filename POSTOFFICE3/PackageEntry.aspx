@@ -25,7 +25,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Weight of Package(Estimated):
         <asp:TextBox ID="Weight_TextBox" ReadOnly="false" runat="server"></asp:TextBox>
-        <br />
+        LB<br />
         Sender Apt #(OPTIONAL):<asp:TextBox ID="S_Apt_TextBox" runat="server"></asp:TextBox>
         <br />
         Sender City:<asp:TextBox ID="S_City_TextBox" runat="server"></asp:TextBox>
