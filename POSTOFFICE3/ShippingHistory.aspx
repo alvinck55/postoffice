@@ -9,6 +9,9 @@
 <body>
     <form id="form1" runat="server">
         <h1>Post Office Shipping History</h1>
+        <asp:Label ID="logText" runat="server" Text=""></asp:Label>
+        <br />
+        <br />
         <div>
             Select Time Period:<br />
         </div>
@@ -44,6 +47,8 @@
                 <asp:BoundField DataField="Last_updated" HeaderText="Date Sent" SortExpression="Last_updated" />
             </Columns>
         </asp:GridView>
+        <br />
     </form>
+    <a href="Dashboard.aspx">Dashboard</a>
 </body>
 </html>

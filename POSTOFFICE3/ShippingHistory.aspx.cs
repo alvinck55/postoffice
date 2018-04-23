@@ -26,7 +26,7 @@ namespace POSTOFFICE3
                 Response.Redirect("Home.aspx");
             }
             username = Session["username"].ToString();
-
+            logText.Text = "Currently logged in as: " + Session["username"];
 
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
             conn = new SqlConnection(connectionString);

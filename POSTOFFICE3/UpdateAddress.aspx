@@ -124,7 +124,8 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <a href="Dashboard.aspx">home</a>
+            <br />
+            <a href="Dashboard.aspx">Dashboard</a>
          
         </div>
       
