@@ -4,11 +4,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Update Address</title>
 </head>
 <body>
-    <asp:Label ID="logText" runat="server" Text=""></asp:Label>
     <form id="form1" runat="server">
+        <h1>Post Office Update Address</h1>
+        <asp:Label ID="logText" runat="server" Text=""></asp:Label>
+        <br />
+        <br />
         <div>
             <asp:HiddenField ID="hfContactID" runat="server" />
             <table>
