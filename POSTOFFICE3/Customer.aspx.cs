@@ -96,6 +96,7 @@ namespace POSTOFFICE3
                     else
                         quer += " AND dbo.ADDRESS.Zip= '" + zip.Text + "'";
                 }
+                //quer += " AND dbo.CUSTOMER.Address_ID = dbo.ADDRESS_Address_ID";
                 sqlQuery = quer;
                 command = new SqlCommand(sqlQuery, conn);
                 dataReader = command.ExecuteReader();
@@ -108,7 +109,7 @@ namespace POSTOFFICE3
                     {
                         output = dataReader.GetValue(dataReader.GetOrdinal("Customer_ID")).ToString();
                     }
-                    Label1.Text = output;
+                    Label4.Text = output;
                 }
                 else
                 {
