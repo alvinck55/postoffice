@@ -20,7 +20,7 @@
         <div>
            
             <p>Username: </p>
-            <asp:TextBox ID="usernameText" Text="Enter username here" runat="server" />
+            <asp:TextBox ID="usernameText" Text="" runat="server" />
             <p>Password: </p>
             <asp:TextBox ID="passwordText" Text="Enter password here" TextMode ="Password" runat="server" />
             <asp:Button ID="submitButton" Text="Sign in" runat="server"  OnClick="submitEventMethod"/>

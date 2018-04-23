@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
+
 namespace POSTOFFICE3
 {
     public partial class Registration : System.Web.UI.Page
@@ -31,6 +33,10 @@ namespace POSTOFFICE3
 
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
+                bool isEmail;
+                var email = new EmailAddressAttribute();
+
+                isEmail = email.IsValid(emailText.Text.Trim());
                 if (firstNameText.Text == "" || middleNameText.Text == "" || lastNameText.Text == "" || emailText.Text == "" || phoneText.Text == "" || passwordText.Text == "" || password2Text.Text == "")
                 {
                     statusMessage.Text = "Please fill in require fields" + phonecheck;
@@ -39,6 +45,10 @@ namespace POSTOFFICE3
                 {
                     statusMessage.Text = "Passwords do not match";
 
+                }
+                else if(isEmail == false)
+                {
+                    statusMessage.Text = "invalid email format";
                 }
                 else if (phonecheck < 1000000000 || phonecheck > 9999999999)
                 {
