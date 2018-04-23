@@ -23,11 +23,12 @@
         <asp:TextBox ID="TrackingNumberTextBox" runat="server"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" OnClick="TrackPackage_Click" Text="Track" />
         <br />
+        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
-        <span class="auto-style1">Product &amp; Tracking Information</span><br />
+        <span class="auto-style1">Package &amp; Tracking Information</span><br />
         <br />
-        <span class="auto-style2"><strong>Product Information:</strong></span><br />
+        <span class="auto-style2"><strong>Package Information:</strong></span><br />
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="PackageSource">
             <Columns>
                 <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
@@ -45,9 +46,10 @@ WHERE PACKAGE.Tracking_no = @Tracking_no AND PACKAGE.Priority = PRIORITY.Priorit
         <p>
             &nbsp;</p>
         <p class="auto-style2">
-            <strong>Package Information:</strong></p>
+            <strong>Tracking Information:</strong></p>
         <p>
-            <asp:Label ID="Label1" runat="server" Text="Track"></asp:Label>
+            <span class="auto-style2">CURRENT STATUS</span>:
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </p>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="PostOffice">
             <Columns>

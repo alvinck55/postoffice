@@ -88,6 +88,7 @@ namespace POSTOFFICE3
 
 
 
+
                 sqlQuery = "DECLARE @adID int SET @adID = (SELECT ADDRESS.Address_ID FROM ADDRESS WHERE ADDRESS.Street = @Street) IF @adID IS NULL BEGIN " +
                    "INSERT INTO ADDRESS(Facility_ID, Street, City,State,Zip,aptn,Postal_code) VALUES('1',@Street,@City,@State,@Zip,@aptn,@Postal_code) SET @adID = SCOPE_IDENTITY() END SELECT @adID";
                 command = new SqlCommand(sqlQuery, conn);
@@ -137,8 +138,7 @@ namespace POSTOFFICE3
 
             catch (Exception ex)
             {
-                Label1.Text = "Please ensure all required fields for Receiver are filled in correctly";
-                dataReader.Close();
+                Label1.Text = "Please ensure all required fields filled in correctly";
                 command.Dispose();
                 conn.Close();
             }
@@ -156,7 +156,7 @@ namespace POSTOFFICE3
                 conn.Open();
 
                 sqlQuery = "INSERT INTO dbo.PACKAGE(Sender_ID,Cost,Types,Priority,Sender_Address_ID,Receiver_Address_ID)" +
-                    "VALUES((SELECT dbo.CUSTOMER.Customer_ID FROM dbo.CUSTOMER WHERE dbo.CUSTOMER.Email= @email), '1.10',@type,@priority,@Sender_Address_ID,@Receiver_Address_ID)" +
+                    "VALUES((SELECT dbo.CUSTOMER.Customer_ID FROM dbo.CUSTOMER WHERE dbo.CUSTOMER.Email= @email), @weight ,@type,@priority,@Sender_Address_ID,@Receiver_Address_ID)" +
                     " DECLARE @Package_ID int DECLARE @Tracking_no int SET @Package_ID = SCOPE_IDENTITY() SET @Tracking_no = (SELECT TRACKING.Tracking_no FROM TRACKING WHERE TRACKING.Package_ID = @Package_ID) SELECT @Package_ID,@Tracking_no";
 
 
@@ -166,6 +166,14 @@ namespace POSTOFFICE3
                 command.Parameters.AddWithValue("@priority", DropDownList2.SelectedItem.Value.ToString());
                 command.Parameters.AddWithValue("@Receiver_Address_ID", receiverAddressID);
                 command.Parameters.AddWithValue("@Sender_Address_ID", senderAddressID);
+                if (DropDownList1.SelectedItem.Value.ToString() == "CP")
+                {
+                    command.Parameters.AddWithValue("@weight", Convert.ToDecimal(Weight_TextBox));
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@weight", .01);
+                }
                 dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -194,6 +202,8 @@ namespace POSTOFFICE3
             catch(Exception ex)
             {
                 Label1.Text = "Package creation failed";
+                command.Dispose();
+                conn.Close();
             }
 
 
@@ -211,7 +221,16 @@ namespace POSTOFFICE3
 
         protected void DropDownList1_SelectedIndexChanged1(object sender, EventArgs e)
         {
-
+            if(DropDownList1.SelectedItem.Value.ToString() == "EE")
+            {
+                Weight_TextBox.ReadOnly = true;
+                Weight_TextBox.BackColor = System.Drawing.Color.LightGray;
+            }
+            else
+            {
+                Weight_TextBox.ReadOnly = false;
+                Weight_TextBox.BackColor = System.Drawing.Color.White;
+            }
         }
     }
 }

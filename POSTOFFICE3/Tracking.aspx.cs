@@ -27,33 +27,63 @@ namespace POSTOFFICE3
         }
         private void trackPackage()
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
-            conn = new SqlConnection(connectionString);
-
-            conn.Open();
-
-            sqlQuery = "SELECT dbo.STATUS.Status FROM POSTOFFICE2.dbo.TRACKING, POSTOFFICE2.dbo.STATUS WHERE dbo.TRACKING.Tracking_no='" + TrackingNumberTextBox.Text + "' AND dbo.TRACKING.Status = dbo.STATUS.Status_ID";
-            command = new SqlCommand(sqlQuery, conn);
-            dataReader = command.ExecuteReader();
-            output = "";
-
-
-            if (dataReader.HasRows)
+            try
             {
-                while (dataReader.Read())
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
+                conn = new SqlConnection(connectionString);
+
+                conn.Open();
+
+                sqlQuery = "SELECT dbo.STATUS.Status FROM POSTOFFICE2.dbo.TRACKING, POSTOFFICE2.dbo.STATUS WHERE dbo.TRACKING.Tracking_no='" + TrackingNumberTextBox.Text + "' AND dbo.TRACKING.Status = dbo.STATUS.Status_ID";
+                command = new SqlCommand(sqlQuery, conn);
+                dataReader = command.ExecuteReader();
+                output = "";
+
+
+                if (dataReader.HasRows)
                 {
-                    output = dataReader.GetValue(dataReader.GetOrdinal("Status")).ToString();
+                    while (dataReader.Read())
+                    {
+                        output = dataReader.GetValue(dataReader.GetOrdinal("Status")).ToString();
+                    }
+                    if (output == "Delivered")
+                    {
+                        dataReader.Close();
+                        command.Dispose();
+                        sqlQuery = "SELECT dbo.ADDRESS.Street, dbo.ADDRESS.City, dbo.ADDRESS.State, dbo.ADDRESS.Zip, dbo.ADDRESS.aptn FROM dbo.ADDRESS,dbo.TRACKING WHERE" +
+                            " dbo.TRACKING.Tracking_no = @tracking AND dbo.ADDRESS.Address_ID=dbo.TRACKING.Destination_Address_ID ";
+                        command = new SqlCommand(sqlQuery, conn);
+                        command.Parameters.AddWithValue("@tracking", TrackingNumberTextBox.Text);
+                        dataReader = command.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            output = "Delivered at #" + dataReader.GetValue(dataReader.GetOrdinal("aptn")).ToString() + " " + dataReader.GetValue(dataReader.GetOrdinal("Street")).ToString() + "   " + dataReader.GetValue(dataReader.GetOrdinal("City")).ToString() +
+                                "," + dataReader.GetValue(dataReader.GetOrdinal("State")).ToString() + " " + dataReader.GetValue(dataReader.GetOrdinal("Zip")).ToString();
+                            Label1.Text = output;
+                        }
+
+                    }
+                    else
+                    {
+                        Label1.Text = output;
+                    }
+
                 }
-                Label1.Text = output;
+                else
+                {
+                    Label1.Text = "";
+                    Label2.Text = "invalid tracking number";
+                }
+                dataReader.Close();
+                command.Dispose();
+                conn.Close();
             }
-            else
+            catch(Exception ex)
             {
-                Label1.Text = "invalid tracking number";
+                command.Dispose();
+                conn.Close();
             }
 
-            dataReader.Close();
-            command.Dispose();
-            conn.Close();
 
             
         }

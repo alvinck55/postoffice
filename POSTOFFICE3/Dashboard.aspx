@@ -15,8 +15,15 @@
             <br />
             <a href="ShippingHistory.aspx">Shipping History</a>
             <br />
+            <a href="Tracking.aspx">Track a Package</a>
+            <br />
+            <a href="PackageEntry.aspx">Create a Shipping Label</a>
+            <br />
             <br />
             <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
+            <br />
+            <br />
+            <br />
         </div>
     </form>
 </body>

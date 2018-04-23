@@ -11,6 +11,7 @@ namespace POSTOFFICE3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string username;
             if (Session["username"] == null)
             {
                 Response.Redirect("Home.aspx");
@@ -18,6 +19,7 @@ namespace POSTOFFICE3
 
             }
             lblUserDetails.Text = "Currently logged in as: " + Session["username"];
+            username = Session["username"].ToString();
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
