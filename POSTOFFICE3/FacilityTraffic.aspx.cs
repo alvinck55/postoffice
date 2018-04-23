@@ -32,15 +32,16 @@ namespace POSTOFFICE3
 
                 conn.Open();
 
-                sqlQuery = "SELECT EMPLOYEE.Facility_ID FROM EMPLOYEE WHERE EMPLOYEE.Employee_ID = @username";
+                sqlQuery = "SELECT dbo.EMPLOYEES.Facility_ID FROM dbo.EMPLOYEES WHERE dbo.EMPLOYEES.Employee_ID = @username";
                 command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@username", username);
                 dataReader = command.ExecuteReader();
 
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
                     {
-                        facility_id = dataReader.GetString(dataReader.GetOrdinal("Facility_ID"));
+                        facility_id = dataReader.GetValue(dataReader.GetOrdinal("Facility_ID")).ToString();
                     }
                 }
 

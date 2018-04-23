@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <h1>Employee Dashboard</h1>
             <a href="UpdatePackage.aspx">Update a Package Location/Status</a><br />
             <a href="FacilityTraffic.aspx">View all package traffic at facility</a><br />
             <a href="Tracking.aspx">Track a package</a>
