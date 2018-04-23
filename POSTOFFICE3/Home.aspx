@@ -7,8 +7,8 @@
     <title>Welcome to the Post Office Database</title>
     <style>
         body {
-            background-color:aquamarine;
-            font-family:Lucida Sans;
+            
+            font-family:Helvetica;
 
         }
 
