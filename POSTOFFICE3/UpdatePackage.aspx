@@ -22,6 +22,8 @@
             <asp:Button ID="Button1" runat="server" Text="Update" OnClick="Button1_Click" />
         </div>
         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+        <a href="EmployeeDashboard.aspx">Employee Dashboard</a>
+
     </form>
 </body>
 </html>

@@ -64,8 +64,10 @@ namespace POSTOFFICE3
                     Clear();
                     statusMessage.Text = "updated successfully";
                 }
-                
+                sqlCon.Close();
             }
+            
+
 
 
 
