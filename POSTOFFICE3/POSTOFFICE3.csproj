@@ -80,6 +80,7 @@
     <Content Include="Data.aspx" />
     <Content Include="Customer.aspx" />
     <Content Include="EmployeeDashboard.aspx" />
+    <Content Include="FacilityTraffic.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="PackageEntry.aspx" />
     <Content Include="newaddress.aspx" />
@@ -88,6 +89,7 @@
     <Content Include="ShippingHistory.aspx" />
     <Content Include="Tracking.aspx" />
     <Content Include="UpdateAddress.aspx" />
+    <Content Include="UpdatePackage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +123,13 @@
     </Compile>
     <Compile Include="Facilities.aspx.designer.cs">
       <DependentUpon>Facilities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FacilityTraffic.aspx.cs">
+      <DependentUpon>FacilityTraffic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FacilityTraffic.aspx.designer.cs">
+      <DependentUpon>FacilityTraffic.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -175,6 +184,13 @@
     </Compile>
     <Compile Include="UpdateAddress.aspx.designer.cs">
       <DependentUpon>UpdateAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdatePackage.aspx.cs">
+      <DependentUpon>UpdatePackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdatePackage.aspx.designer.cs">
+      <DependentUpon>UpdatePackage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

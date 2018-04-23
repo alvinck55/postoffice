@@ -21,5 +21,11 @@ namespace POSTOFFICE3
             username = Session["username"].ToString();
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
+        }
     }
 }
