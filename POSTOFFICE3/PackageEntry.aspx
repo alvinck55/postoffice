@@ -4,11 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Create a Shipping Label</title>
 </head>
 <body>
     <form id="form1" runat="server">
+        <h1>Post Office Create Shipping Label</h1>
         <div>
+            <asp:Label ID="logText" runat="server" Text=""></asp:Label>
+            <br />
+            <br />
             Enter Package Info:</div>
         Sender First Name:<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type of Package:
@@ -57,6 +61,9 @@
         <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+        <br />
+        <br />
+        <a href="Dashboard.aspx">Dashboard</a>
     </form>
 </body>
 </html>

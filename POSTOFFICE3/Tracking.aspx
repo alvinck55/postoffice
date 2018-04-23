@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Tracking</title>
     <style type="text/css">
         .auto-style1 {
             font-size: x-large;
@@ -17,6 +17,9 @@
 <body>
     <form id="form1" runat="server">
         <h1>Post Office Tracking</h1>
+        <asp:Label ID="logText" runat="server" Text=""></asp:Label>
+        <br />
+        <br />
         <div>
             Enter Tracking Number:<br />
         </div>
@@ -67,6 +70,9 @@ WHERE ADDRESS.Address_ID = FACILITY.Address_ID AND FACILITY.Facility_ID = SHIPPI
                 <asp:ControlParameter ControlID="TrackingNumberTextBox" Name="Tracking_No" PropertyName="Text" />
             </SelectParameters>
         </asp:SqlDataSource>
+        <br />
+        <br />
+        <a href="Dashboard.aspx">Dashboard</a>
     </form>
 
 </body>

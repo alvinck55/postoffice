@@ -26,6 +26,7 @@ namespace POSTOFFICE3
                 Response.Redirect("Home.aspx");
             }
             username = Session["username"].ToString();
+            logText.Text = "Currently logged in as: " + Session["username"];
         }
             
         protected void Button1_Click(object sender, EventArgs e)

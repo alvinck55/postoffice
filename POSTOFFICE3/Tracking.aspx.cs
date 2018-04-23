@@ -15,11 +15,17 @@ namespace POSTOFFICE3
         SqlDataReader dataReader;
         string sqlQuery;
         string output;
+        string username;
 
         protected void Page_Load(object sender, EventArgs e)
 		{
-
-		}
+            if (Session["username"] == null)
+            {
+                Response.Redirect("Home.aspx");
+            }
+            username = Session["username"].ToString();
+            logText.Text = "Currently logged in as: " + Session["username"];
+        }
 
         protected void TrackPackage_Click(object sender, EventArgs e)
         {
