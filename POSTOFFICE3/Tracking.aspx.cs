@@ -60,12 +60,14 @@ namespace POSTOFFICE3
                             output = "Delivered at #" + dataReader.GetValue(dataReader.GetOrdinal("aptn")).ToString() + " " + dataReader.GetValue(dataReader.GetOrdinal("Street")).ToString() + "   " + dataReader.GetValue(dataReader.GetOrdinal("City")).ToString() +
                                 "," + dataReader.GetValue(dataReader.GetOrdinal("State")).ToString() + " " + dataReader.GetValue(dataReader.GetOrdinal("Zip")).ToString();
                             Label1.Text = output;
+                            Label2.Text = "";
                         }
 
                     }
                     else
                     {
                         Label1.Text = output;
+                        Label2.Text = "";
                     }
 
                 }

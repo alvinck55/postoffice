@@ -23,7 +23,7 @@
         <asp:TextBox ID="TrackingNumberTextBox" runat="server"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" OnClick="TrackPackage_Click" Text="Track" />
         <br />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
         <br />
         <br />
         <span class="auto-style1">Package &amp; Tracking Information</span><br />
