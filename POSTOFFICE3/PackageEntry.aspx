@@ -34,7 +34,9 @@
         <br />
         Sender City:<asp:TextBox ID="S_City_TextBox" runat="server"></asp:TextBox>
         <br />
-        Sender State:<asp:TextBox ID="S_State_TextBox" runat="server"></asp:TextBox>
+        Sender State:<asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="states" DataTextField="State" DataValueField="State_ID">
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="states" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT STATE.State, STATE.State_ID FROM STATE"></asp:SqlDataSource>
         <br />
         Sender Zip:<asp:TextBox ID="S_Zip_TextBox" runat="server"></asp:TextBox>
         <br />
@@ -51,7 +53,8 @@
         <br />
         Receiver City:<asp:TextBox ID="R_City_TextBox" runat="server"></asp:TextBox>
         <br />
-        Receiver State:<asp:TextBox ID="R_State_TextBox" runat="server"></asp:TextBox>
+        Receiver State:<asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="states" DataTextField="State" DataValueField="State_ID">
+        </asp:DropDownList>
         <br />
         Receiver Zip:<asp:TextBox ID="R_Zip_TextBox" runat="server"></asp:TextBox>
         <br />

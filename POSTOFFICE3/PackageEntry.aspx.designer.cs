@@ -121,13 +121,22 @@ namespace POSTOFFICE3 {
         protected global::System.Web.UI.WebControls.TextBox S_City_TextBox;
         
         /// <summary>
-        /// S_State_TextBox control.
+        /// DropDownList3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox S_State_TextBox;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        
+        /// <summary>
+        /// states control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource states;
         
         /// <summary>
         /// S_Zip_TextBox control.
@@ -193,13 +202,13 @@ namespace POSTOFFICE3 {
         protected global::System.Web.UI.WebControls.TextBox R_City_TextBox;
         
         /// <summary>
-        /// R_State_TextBox control.
+        /// DropDownList4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox R_State_TextBox;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList4;
         
         /// <summary>
         /// R_Zip_TextBox control.

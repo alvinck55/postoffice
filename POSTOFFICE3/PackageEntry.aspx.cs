@@ -48,7 +48,7 @@ namespace POSTOFFICE3
                 command = new SqlCommand(sqlQuery, conn);
                 command.Parameters.AddWithValue("@Street", S_Address_TextBox.Text);
                 command.Parameters.AddWithValue("@City", S_City_TextBox.Text);
-                command.Parameters.AddWithValue("@State", S_State_TextBox.Text);
+                command.Parameters.AddWithValue("@State", DropDownList3.SelectedItem.Value.ToString());
                 if (S_Zip_TextBox.Text == string.Empty)
                 {
                     command.Parameters.AddWithValue("@Zip", DBNull.Value);
@@ -95,7 +95,7 @@ namespace POSTOFFICE3
                 command = new SqlCommand(sqlQuery, conn);
                 command.Parameters.AddWithValue("@Street", R_Address_TextBox.Text);
                 command.Parameters.AddWithValue("@City", R_City_TextBox.Text);
-                command.Parameters.AddWithValue("@State", R_State_TextBox.Text);
+                command.Parameters.AddWithValue("@State", DropDownList4.SelectedItem.Value.ToString());
                 if (R_Zip_TextBox.Text == string.Empty)
                 {
                     command.Parameters.AddWithValue("@Zip", DBNull.Value);
@@ -156,8 +156,8 @@ namespace POSTOFFICE3
 
                 conn.Open();
 
-                sqlQuery = "INSERT INTO dbo.PACKAGE(Sender_ID,Cost,Types,Priority,Sender_Address_ID,Receiver_Address_ID)" +
-                    "VALUES((SELECT dbo.CUSTOMER.Customer_ID FROM dbo.CUSTOMER WHERE dbo.CUSTOMER.Email= @email), @weight ,@type,@priority,@Sender_Address_ID,@Receiver_Address_ID)" +
+                sqlQuery = "INSERT INTO dbo.PACKAGE(Sender_ID,Weight,Cost,Types,Priority,Sender_Address_ID,Receiver_Address_ID)" +
+                    "VALUES((SELECT dbo.CUSTOMER.Customer_ID FROM dbo.CUSTOMER WHERE dbo.CUSTOMER.Email= @email), @weight,'1.0' ,@type,@priority,@Sender_Address_ID,@Receiver_Address_ID)" +
                     " DECLARE @Package_ID int DECLARE @Tracking_no int SET @Package_ID = SCOPE_IDENTITY() SET @Tracking_no = (SELECT TRACKING.Tracking_no FROM TRACKING WHERE TRACKING.Package_ID = @Package_ID) SELECT @Package_ID,@Tracking_no";
 
 
@@ -169,7 +169,7 @@ namespace POSTOFFICE3
                 command.Parameters.AddWithValue("@Sender_Address_ID", senderAddressID);
                 if (DropDownList1.SelectedItem.Value.ToString() == "CP")
                 {
-                    command.Parameters.AddWithValue("@weight", Convert.ToDecimal(Weight_TextBox));
+                    command.Parameters.AddWithValue("@weight", Convert.ToDecimal(Weight_TextBox.Text));
                 }
                 else
                 {
