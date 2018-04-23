@@ -14,7 +14,6 @@ namespace POSTOFFICE3
         SqlCommand command;
         SqlDataReader dataReader;
         string sqlQuery;
-        string output;
         string facility_id;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,7 +32,7 @@ namespace POSTOFFICE3
 
                 conn.Open();
 
-                sqlQuery = "SELECT EMPLOYEE.Facility_ID FROM EMPLOYEE WHERE EMPLOYEE.username = @username";
+                sqlQuery = "SELECT EMPLOYEE.Facility_ID FROM EMPLOYEE WHERE EMPLOYEE.Employee_ID = @username";
                 command = new SqlCommand(sqlQuery, conn);
                 dataReader = command.ExecuteReader();
 

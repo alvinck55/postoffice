@@ -27,33 +27,41 @@ namespace POSTOFFICE3
         }
         private void zipSearch()
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
-            conn = new SqlConnection(connectionString);
-
-            conn.Open();
-
-            sqlQuery = "SELECT dbo.FACILITY.Facility_ID FROM POSTOFFICE2.dbo.FACILITY, POSTOFFICE2.dbo.ADDRESS WHERE dbo.ADDRESS.Zip='" + zipBox.Text + "' AND dbo.FACILITY.Address_ID = dbo.ADDRESS.Address_ID";
-            command = new SqlCommand(sqlQuery, conn);
-            dataReader = command.ExecuteReader();
-            output = "";
-
-
-            if (dataReader.HasRows)
+            try
             {
-                while (dataReader.Read())
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
+                conn = new SqlConnection(connectionString);
+
+                conn.Open();
+
+                sqlQuery = "SELECT dbo.FACILITY.Facility_ID FROM POSTOFFICE2.dbo.FACILITY, POSTOFFICE2.dbo.ADDRESS WHERE dbo.ADDRESS.Zip='" + zipBox.Text + "' AND dbo.FACILITY.Address_ID = dbo.ADDRESS.Address_ID";
+                command = new SqlCommand(sqlQuery, conn);
+                dataReader = command.ExecuteReader();
+                output = "";
+
+
+                if (dataReader.HasRows)
                 {
-                    output = dataReader.GetValue(dataReader.GetOrdinal("Zip")).ToString();
+                    while (dataReader.Read())
+                    {
+                        output = dataReader.GetValue(dataReader.GetOrdinal("Zip")).ToString();
+                    }
+                    Label1.Text = output;
                 }
-                Label1.Text = output;
-            }
-            else
-            {
-                Label1.Text = "There are no facilities serving that ZIP code.";
-            }
+                else
+                {
+                    Label1.Text = "There are no facilities serving that ZIP code.";
+                }
 
-            dataReader.Close();
-            command.Dispose();
-            conn.Close();
+                dataReader.Close();
+                command.Dispose();
+                conn.Close();
+            }
+            catch
+            {
+                command.Dispose();
+                conn.Close();
+            }
         }
     }
 }
