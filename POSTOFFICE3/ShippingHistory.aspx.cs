@@ -11,49 +11,22 @@ namespace POSTOFFICE3
     public partial class ShippingHistory : System.Web.UI.Page
     {
         string username;
-        int customerid;
-        List<int> packageid = new List<int>();
+        string customerid;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if (Session["username"] == null)
-            {
-                Response.Redirect("Home.aspx");
-            }
-            username = Session["username"].ToString();
-
-            Calendar1.SelectedDate = DateTime.Today + TimeSpan.FromDays(-30);
-            Calendar2.SelectedDate = DateTime.Today;
-        }
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Label1.Text = "Entered SelextedIndexChanged";
-            string value = DropDownList1.SelectedValue;
-            if (value == "30")
-            {
-                SearchData(value);
-            }
-            if (value == "60")
-            {
-
-            }
-            if (value == "90")
-            {
-
-            }
-            if (value == "Custom")
-            {
-
-            }
-        }
-        private void SearchData(string value)
         {
             SqlCommand command;
             SqlDataReader dataReader;
             SqlConnection conn;
             string sqlQuery;
             string connectionString;
+
+            if (Session["username"] == null)
+            {
+                Response.Redirect("Home.aspx");
+            }
+            username = Session["username"].ToString();
+
 
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
             conn = new SqlConnection(connectionString);
@@ -67,14 +40,22 @@ namespace POSTOFFICE3
             {
                 while (dataReader.Read())
                 {
-                    customerid = dataReader.GetInt32(dataReader.GetOrdinal("Customer_ID"));
+                    customerid = dataReader.GetValue(dataReader.GetOrdinal("Customer_ID")).ToString();
                 }
-                TextBox1.Text = customerid.ToString();
+                TextBox1.Text = customerid;
             }
             dataReader.Close();
             command.Dispose();
             conn.Close();
+        }
 
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string value = DropDownList1.SelectedValue;
+
+        }
+        private void SearchData(string value)
+        {
             //conn = CreateConnectionString();
             //conn.Open();
             //sqlQuery = "SELECT * FROM POSTOFFICE2.dbo.PACKAGE p WHERE p.Sender_ID='" + customerid.ToString() + "'";
