@@ -39,7 +39,7 @@
         </asp:GridView>
         <asp:SqlDataSource ID="PostOffice" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT CUSTOMER.Fname, CUSTOMER.Minit, CUSTOMER.Lname, CUSTOMER.Email, CUSTOMER.Phone1, CUSTOMER.Phone2, ADDRESS.Street, ADDRESS.City, ADDRESS.State, ADDRESS.Zip, ADDRESS.aptn, ADDRESS.Postal_code
 FROM ADDRESS, CUSTOMER
-WHERE ADDRESS.Address_ID = CUSTOMER.Address_ID AND CUSTOMER.Customer_ID = @CustId">
+WHERE ADDRESS.Address_ID = CUSTOMER.Address_ID AND CUSTOMER.Customer_ID = @Customer_ID">
             <SelectParameters>
                 <asp:ControlParameter ControlID="fName" Name="Fname" PropertyName="Text" />
                 <asp:ControlParameter ControlID="mInit" Name="Minit" PropertyName="Text" />

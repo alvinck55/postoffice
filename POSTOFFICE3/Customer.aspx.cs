@@ -106,7 +106,7 @@ namespace POSTOFFICE3
                 {
                     while (dataReader.Read())
                     {
-                        output = dataReader.GetValue(dataReader.GetOrdinal("custId")).ToString();
+                        output = dataReader.GetValue(dataReader.GetOrdinal("Customer_ID")).ToString();
                     }
                     Label1.Text = output;
                 }
