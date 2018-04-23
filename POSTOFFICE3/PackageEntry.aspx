@@ -12,7 +12,7 @@
             Enter Package Info:</div>
         Sender First Name:<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type of Package:
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="PostOffice" DataTextField="Type" DataValueField="Type_ID" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1" Width="80px">
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="PostOffice" DataTextField="Type" DataValueField="Type_ID" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1" Width="80px" AutoPostBack="True">
         </asp:DropDownList>
         <asp:SqlDataSource ID="PostOffice" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT TYPE.Type, TYPE.Type_ID FROM TYPE"></asp:SqlDataSource>
         <br />
@@ -23,6 +23,8 @@
         <br />
         Sender Address:<asp:TextBox ID="S_Address_TextBox" runat="server"></asp:TextBox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Weight of Package(Estimated):
+        <asp:TextBox ID="Weight_TextBox" ReadOnly="false" runat="server"></asp:TextBox>
         <br />
         Sender Apt #(OPTIONAL):<asp:TextBox ID="S_Apt_TextBox" runat="server"></asp:TextBox>
         <br />
@@ -53,8 +55,8 @@
         <br />
         <br />
         <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
     </form>
 </body>
 </html>

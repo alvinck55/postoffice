@@ -85,6 +85,15 @@ namespace POSTOFFICE3 {
         protected global::System.Web.UI.WebControls.TextBox S_Address_TextBox;
         
         /// <summary>
+        /// Weight_TextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Weight_TextBox;
+        
+        /// <summary>
         /// S_Apt_TextBox control.
         /// </summary>
         /// <remarks>
