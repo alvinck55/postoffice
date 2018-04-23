@@ -25,9 +25,9 @@
             <p>Alternate Phone number(optional): </p>
             <asp:TextBox ID="phone2Text" Text="" runat="server" />
             <p>Password: </p>
-            <asp:TextBox ID="passwordText" Text="" runat="server" />
+            <asp:TextBox ID="passwordText" Text="" TextMode ="Password" runat="server" />
             <p>Confirm Password: </p>
-            <asp:TextBox ID="password2Text" Text="" runat="server" />
+            <asp:TextBox ID="password2Text" Text="" TextMode ="Password" runat="server" />
             <p></p>
             <asp:Label ID="statusMessage" Text="Please enter information in all fields" runat="server" />
             <asp:Button ID="registerButton" Text="Register Account" runat="server"  OnClick="registerEventMethod"/>

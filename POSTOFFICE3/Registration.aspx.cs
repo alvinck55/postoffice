@@ -39,7 +39,7 @@ namespace POSTOFFICE3
                 isEmail = email.IsValid(emailText.Text.Trim());
                 if (firstNameText.Text == "" || middleNameText.Text == "" || lastNameText.Text == "" || emailText.Text == "" || phoneText.Text == "" || passwordText.Text == "" || password2Text.Text == "")
                 {
-                    statusMessage.Text = "Please fill in require fields" + phonecheck;
+                    statusMessage.Text = "Please fill in require fields";
                 }
                 else if (passwordText.Text != password2Text.Text)
                 {
