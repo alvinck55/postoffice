@@ -86,6 +86,7 @@
     <Content Include="newaddress.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="Facilities.aspx" />
+    <Content Include="SearchPackage.aspx" />
     <Content Include="ShippingHistory.aspx" />
     <Content Include="Tracking.aspx" />
     <Content Include="UpdateAddress.aspx" />
@@ -163,6 +164,13 @@
     <Compile Include="Facilities.aspx.cs">
       <DependentUpon>Facilities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchPackage.aspx.cs">
+      <DependentUpon>SearchPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchPackage.aspx.designer.cs">
+      <DependentUpon>SearchPackage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShippingHistory.aspx.cs">
       <DependentUpon>ShippingHistory.aspx</DependentUpon>
