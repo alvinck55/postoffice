@@ -14,6 +14,12 @@
             <asp:Button ID="searchButton" runat="server" OnClick="SearchButton_Click" Text="Search" />
         </div>
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <br />
+        <br />
+        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Street" DataValueField="Address_ID" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="83px">
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT * FROM ADDRESS WHERE ADDRESS.State = 'TX'"></asp:SqlDataSource>
+        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
     </form>
 </body>
 </html>
