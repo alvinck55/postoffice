@@ -62,71 +62,76 @@ namespace POSTOFFICE3
         }
         private void searchForPackage()
         {
-            try
-            {
+            //try
+            //{
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
                 conn = new SqlConnection(connectionString);
 
                 conn.Open();
+            string address;
+            string priority;
+            string weight;
+            string type;
+            
 
-                sqlQuery = "SELECT dbo.PACKAGE.Tracking_no, dbo.ADDRESS.Street, dbo.ADDRESS.City, dbo.ADDRESS.Zip, dbo.PRIORITY.Priority, dbo.TYPE.Type " +
-                    "FROM PACKAGE,ADDRESS,PRIORITY,TYPE WHERE ADDRESS.Address_ID = dbo.PACKAGE.Receiver_Address_ID AND dbo.PRIORITY.Priority_ID = dbo.PACKAGE.Priority " +
-                    "AND dbo.TYPE.Type_ID = dbo.PACKAGE.Types AND dbo.PACKAGE.Sender_ID = @sender AND dbo.PACKAGE.Receiver_ADDRESS_ID = @address AND dbo.PACKAGE.Weight = @weight AND dbo.PACKAGE.Priority = @priority AND" +
-                    "dbo.PACKAGE.Types = @type";
-                command = new SqlCommand(sqlQuery, conn);
-                command.Parameters.AddWithValue("@sender",username);
                 string state;
                 string city;
+
                 if(DropDownList1.SelectedValue.ToString() == "Select")
                 {
-                    state = "dbo.ADDRESS.State";
+                    state = "";
                 }
                 else
                 {
-                    state = DropDownList1.SelectedValue.ToString();
+                    state = " AND dbo.ADDRESS.State = " + DropDownList1.SelectedValue.ToString();
                 }
                 if(City_TextBox.Text == "")
                 {
-                    city = "dbo.ADDRESS.City";
+                    city = "";
                 }
                 else
                 {
-                    city = City_TextBox.Text;
+                    city = " AND dbo.ADDRESS.City = " + City_TextBox.Text;
                 }
                 if (Address_TextBox.Text == "")
                 {
-                    command.Parameters.AddWithValue("@address", "dbo.PACKAGE.Receiver_ADDRESS_ID");
+                address = "";
                 }
                 else
                 {
-                    command.Parameters.AddWithValue("@address","(SELECT dbo.ADDRESS.Address_ID FROM dbo.ADDRESS WHERE dbo.ADDRESS.Street = '" + Address_TextBox.Text + "' AND dbo.ADDRESS.State = '"+ state +"' AND dbo.ADDRESS.City = '"+ city +"')");
+                    address = " AND dbo.PACKAGE.Receiver_Address_ID = (SELECT dbo.ADDRESS.Address_ID FROM dbo.ADDRESS WHERE dbo.ADDRESS.Street = '" + Address_TextBox.Text + "'" + state + city + ")";
+
                 }
                 if(Weight_TextBox.Text == "")
                 {
-                    command.Parameters.AddWithValue("@weight","dbo.PACKCAGE.Weight");
+                weight = "";
                 }
                 else
                 {
-                    command.Parameters.AddWithValue("@weight",Weight_TextBox.Text);
+                weight = " AND dbo.PACKAGE.Weight = " + Weight_TextBox.Text;
                 }
                 if (DropDownList2.SelectedItem.Value == "Select")
                 {
-                    command.Parameters.AddWithValue("@type", "dbo.PACKAGE.Types");
+                type = "";
                 }
                 else
                 {
-                    command.Parameters.AddWithValue("@type",DropDownList2.SelectedItem.Value);
+                type = " AND dbo.PACKAGE.Types = " + DropDownList2.SelectedItem.Value.ToString();
                 }
                 if(DropDownList3.SelectedItem.Value == "Select")
                 {
-                    command.Parameters.AddWithValue("@priority", "dbo.PACKAGE.Priority");
+                priority = "";
                 }
                 else
                 {
-                    command.Parameters.AddWithValue("@priority", DropDownList3.SelectedItem.Value);
+                    priority = " AND dbo.PACKAGE.Priority = "+ DropDownList3.SelectedItem.Value.ToString();
                 }
-
-                dataReader = command.ExecuteReader();
+            sqlQuery = "SELECT dbo.PACKAGE.Tracking_no, dbo.ADDRESS.Street, dbo.ADDRESS.City, dbo.ADDRESS.Zip, dbo.PRIORITY.Priority, dbo.TYPE.Type " +
+            "FROM PACKAGE,ADDRESS,PRIORITY,TYPE WHERE ADDRESS.Address_ID = dbo.PACKAGE.Receiver_Address_ID AND dbo.PRIORITY.Priority_ID = dbo.PACKAGE.Priority " +
+            "AND dbo.TYPE.Type_ID = dbo.PACKAGE.Types AND dbo.PACKAGE.Sender_ID = @sender " + address + priority + weight + type;
+            command = new SqlCommand(sqlQuery, conn);
+            command.Parameters.AddWithValue("@sender", customer_id);
+            dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
@@ -143,11 +148,11 @@ namespace POSTOFFICE3
                 command.Dispose();
                 conn.Close();
             }
-            catch(Exception ex)
+            /*catch(Exception ex)
             {
                 Label1.Text = "Please ensure fields are filled in appropriately";
             }
-        }
+        }*/
 
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
