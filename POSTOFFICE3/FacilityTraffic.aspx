@@ -35,6 +35,8 @@
         <p>
             <asp:TextBox ID="TextBox1" visible="false" runat="server" Text="1"></asp:TextBox>
         </p>
+        <a href="EmployeeDashboard.aspx">Employee Dashboard</a>
+
     </form>
 </body>
 </html>

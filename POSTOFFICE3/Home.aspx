@@ -7,8 +7,8 @@
     <title>Welcome to the Post Office Database</title>
     <style>
         body {
-            background-color:aquamarine;
-            font-family:Lucida Sans;
+            
+            font-family:Helvetica;
 
         }
 
@@ -30,6 +30,6 @@
 
         </div>
     </form>
-    <a href="Data.aspx">Data | </a><a href="Registration.aspx">Registration</a>  
+    <a href="Registration.aspx">Registration</a>  
 </body>
 </html>

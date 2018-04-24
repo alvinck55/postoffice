@@ -16,8 +16,15 @@ namespace POSTOFFICE3
 
         protected void Page_Load(object sender, EventArgs e)
 		{
+            string username;
+            if (Session["username"] == null)
+            {
+                Response.Redirect("Home.aspx");
 
-		}
+
+            }
+            username = Session["username"].ToString();
+        }
 
         protected void customerSearch_Click(object sender, EventArgs e)
         {
@@ -96,6 +103,7 @@ namespace POSTOFFICE3
                     else
                         quer += " AND dbo.ADDRESS.Zip= '" + zip.Text + "'";
                 }
+                //quer += " AND dbo.CUSTOMER.Address_ID = dbo.ADDRESS_Address_ID";
                 sqlQuery = quer;
                 command = new SqlCommand(sqlQuery, conn);
                 dataReader = command.ExecuteReader();
@@ -108,7 +116,7 @@ namespace POSTOFFICE3
                     {
                         output = dataReader.GetValue(dataReader.GetOrdinal("Customer_ID")).ToString();
                     }
-                    Label1.Text = output;
+                    Label4.Text = output;
                 }
                 else
                 {

@@ -18,8 +18,15 @@ namespace POSTOFFICE3
 
         protected void Page_Load(object sender, EventArgs e)
 		{
+            string username;
+            if (Session["username"] == null)
+            {
+                Response.Redirect("Home.aspx");
 
-		}
+
+            }
+            username = Session["username"].ToString();
+        }
 
         protected void zipSearch_Click(object sender, EventArgs e)
         {
