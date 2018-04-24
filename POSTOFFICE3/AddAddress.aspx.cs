@@ -104,8 +104,18 @@ namespace POSTOFFICE3
                     {
                         addressid = dataReader[0].ToString();
                         Label1.Text = "Address successfully added";
-                        //Add insert into CUSTOMER_ADDRESS statement
                     }
+                    dataReader.Close();
+                    command.Dispose();
+                    sqlQuery = "INSERT INTO CUSTOMER_ADDRESS(Customer_ID,Address_ID) VALUES(@customerid,@addressid)";
+                    command = new SqlCommand(sqlQuery, conn);
+                    command.Parameters.AddWithValue("@customerid", customerid);
+                    command.Parameters.AddWithValue("@addressid", addressid);
+                    command.ExecuteNonQuery();
+
+                    Label1.Text = "Address successfully added";
+
+         
                 }
                 else
                 {
