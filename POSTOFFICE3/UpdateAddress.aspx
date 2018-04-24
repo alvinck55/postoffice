@@ -44,7 +44,7 @@
                         <asp:Label ID="Label4" runat="server" Text="State"></asp:Label>
                     </td>
                     <td colspan="2">
-                        <asp:DropDownList ID="stateText" runat="server"><asp:ListItem>Alabama</asp:ListItem>
+                        <asp:DropDownList ID="stateText" runat="server" DataSourceID="SqlDataSource1" DataTextField="State" DataValueField="State_ID"><asp:ListItem>Alabama</asp:ListItem>
                 <asp:ListItem>Alaska</asp:ListItem>
                 <asp:ListItem>Arizona</asp:ListItem>
                 <asp:ListItem>Arkansas</asp:ListItem>
@@ -94,6 +94,7 @@
                 <asp:ListItem>West Virginia</asp:ListItem>
                 <asp:ListItem>Wisconsin</asp:ListItem>
                 <asp:ListItem>Wyoming</asp:ListItem></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT STATE.State, STATE.State_ID FROM STATE"></asp:SqlDataSource>
                     </td>
                 </tr>
                  <tr>

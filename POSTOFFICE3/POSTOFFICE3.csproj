@@ -76,6 +76,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddAddress.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Data.aspx" />
     <Content Include="Customer.aspx" />
@@ -94,6 +95,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAddress.aspx.cs">
+      <DependentUpon>AddAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddAddress.aspx.designer.cs">
+      <DependentUpon>AddAddress.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

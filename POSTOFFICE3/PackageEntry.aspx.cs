@@ -42,7 +42,7 @@ namespace POSTOFFICE3
 
                 conn.Open();
 
-                sqlQuery = "DECLARE @adID int SET @adID = (SELECT ADDRESS.Address_ID FROM ADDRESS WHERE ADDRESS.Street = @Street) IF @adID IS NULL BEGIN " +
+                sqlQuery = "DECLARE @adID int SET @adID = (SELECT ADDRESS.Address_ID FROM ADDRESS WHERE ADDRESS.Street = @Street AND ADDRESS.City = @City AND ADDRESS.State = @State) IF @adID IS NULL BEGIN " +
                     "INSERT INTO ADDRESS(Facility_ID, Street, City,State,Zip,aptn,Postal_code) VALUES('1',@Street,@City,@State,@Zip,@aptn,@Postal_code) SET @adID = SCOPE_IDENTITY() END SELECT @adID";
 
                 command = new SqlCommand(sqlQuery, conn);
@@ -90,7 +90,7 @@ namespace POSTOFFICE3
 
 
 
-                sqlQuery = "DECLARE @adID int SET @adID = (SELECT ADDRESS.Address_ID FROM ADDRESS WHERE ADDRESS.Street = @Street) IF @adID IS NULL BEGIN " +
+                sqlQuery = "DECLARE @adID int SET @adID = (SELECT ADDRESS.Address_ID FROM ADDRESS WHERE ADDRESS.Street = @Street AND ADDRESS.State = @State AND ADDRESS.City = @City) IF @adID IS NULL BEGIN " +
                    "INSERT INTO ADDRESS(Facility_ID, Street, City,State,Zip,aptn,Postal_code) VALUES('1',@Street,@City,@State,@Zip,@aptn,@Postal_code) SET @adID = SCOPE_IDENTITY() END SELECT @adID";
                 command = new SqlCommand(sqlQuery, conn);
                 command.Parameters.AddWithValue("@Street", R_Address_TextBox.Text);

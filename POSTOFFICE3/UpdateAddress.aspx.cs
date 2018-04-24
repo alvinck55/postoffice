@@ -55,7 +55,7 @@ namespace POSTOFFICE3
                     //sqlCmd.CommandType = CommandType.StoredProcedure;
                     sqlCmd.Parameters.AddWithValue("@Street", streetText.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@city", cityText.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@State", stateText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@State", stateText.SelectedValue.ToString());
                     sqlCmd.Parameters.AddWithValue("@Zip", zipText.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@aptn", aptnText.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@email", loginid);
