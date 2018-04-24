@@ -21,7 +21,8 @@
             <br />
             <a href="PackageEntry.aspx">Create a Shipping Label</a>
             <br />
-            <br />
+            <a href="SearchPackage.aspx">Search your packages</a><br />
+&nbsp;<br />
             <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
             <br />
             <br />

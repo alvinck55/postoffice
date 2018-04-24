@@ -62,45 +62,63 @@ namespace POSTOFFICE3
         }
         private void searchForPackage()
         {
-            //try
-            //{
+            try
+            {
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
                 conn = new SqlConnection(connectionString);
 
                 conn.Open();
-            string address;
-            string priority;
-            string weight;
-            string type;
-            
+                string priority;
+                string weight;
+                string type;
+                string finalAddress = "";
+                int count = 0;
 
-                string state;
-                string city;
+                if(DropDownList1.SelectedValue.ToString() != "Select")
+                {
+                    finalAddress = " dbo.ADDRESS.State = '" + DropDownList1.SelectedValue.ToString() + "'";
+                    ++count;
+                }
+                if(City_TextBox.Text != String.Empty)
+                {
+                    if(count >= 1)
+                    {
+                        finalAddress += " AND dbo.ADDRESS.City = '" + City_TextBox.Text + "'";
+                    }
+                    else
+                    {
+                        finalAddress = "dbo.ADDRESS.City = '" + City_TextBox.Text + "'";
+                        ++count;
+                    }
+                }
+                if (Address_TextBox.Text != String.Empty)
+                {
+                    if(count >= 1)
+                    {
+                        finalAddress += " AND dbo.ADDRESS.Street = '" + Address_TextBox.Text + "'";
+                    }
+                    else
+                    {
+                        finalAddress = " dbo.ADDRESS.Street = '" + Address_TextBox.Text + "'";
+                        ++count;
+                    }
 
-                if(DropDownList1.SelectedValue.ToString() == "Select")
-                {
-                    state = "";
                 }
-                else
+                if(Zip_TextBox.Text != String.Empty)
                 {
-                    state = " AND dbo.ADDRESS.State = " + DropDownList1.SelectedValue.ToString();
+                    if(count >= 1)
+                    {
+                        finalAddress += " AND dbo.ADDRESS.Zip = '" + Zip_TextBox.Text + "'";
+                    }
+                    else
+                    {
+                        finalAddress = " dbo.ADDRESS.Zip = '" + Zip_TextBox.Text + "'";
+                        ++count;
+                    }
                 }
-                if(City_TextBox.Text == "")
+                if(count >= 1)
                 {
-                    city = "";
-                }
-                else
-                {
-                    city = " AND dbo.ADDRESS.City = " + City_TextBox.Text;
-                }
-                if (Address_TextBox.Text == "")
-                {
-                address = "";
-                }
-                else
-                {
-                    address = " AND dbo.PACKAGE.Receiver_Address_ID = (SELECT dbo.ADDRESS.Address_ID FROM dbo.ADDRESS WHERE dbo.ADDRESS.Street = '" + Address_TextBox.Text + "'" + state + city + ")";
-
+                    finalAddress = " AND dbo.PACKAGE.Receiver_Address_ID in (SELECT dbo.ADDRESS.Address_ID FROM dbo.ADDRESS WHERE " + finalAddress+ ")";
                 }
                 if(Weight_TextBox.Text == "")
                 {
@@ -108,7 +126,7 @@ namespace POSTOFFICE3
                 }
                 else
                 {
-                weight = " AND dbo.PACKAGE.Weight = " + Weight_TextBox.Text;
+                weight = " AND dbo.PACKAGE.Weight = '" + Weight_TextBox.Text + "'";
                 }
                 if (DropDownList2.SelectedItem.Value == "Select")
                 {
@@ -116,7 +134,7 @@ namespace POSTOFFICE3
                 }
                 else
                 {
-                type = " AND dbo.PACKAGE.Types = " + DropDownList2.SelectedItem.Value.ToString();
+                type = " AND dbo.PACKAGE.Types = '" + DropDownList2.SelectedItem.Value.ToString() + "'";
                 }
                 if(DropDownList3.SelectedItem.Value == "Select")
                 {
@@ -124,35 +142,26 @@ namespace POSTOFFICE3
                 }
                 else
                 {
-                    priority = " AND dbo.PACKAGE.Priority = "+ DropDownList3.SelectedItem.Value.ToString();
+                    priority = " AND dbo.PACKAGE.Priority = '"+ DropDownList3.SelectedItem.Value.ToString() + "'";
                 }
-            sqlQuery = "SELECT dbo.PACKAGE.Tracking_no, dbo.ADDRESS.Street, dbo.ADDRESS.City, dbo.ADDRESS.Zip, dbo.PRIORITY.Priority, dbo.TYPE.Type " +
+            sqlQuery = "SELECT dbo.PACKAGE.Tracking_no, dbo.ADDRESS.Street, dbo.ADDRESS.City,dbo.ADDRESS.State, dbo.ADDRESS.Zip, dbo.PRIORITY.Priority, dbo.TYPE.Type " +
             "FROM PACKAGE,ADDRESS,PRIORITY,TYPE WHERE ADDRESS.Address_ID = dbo.PACKAGE.Receiver_Address_ID AND dbo.PRIORITY.Priority_ID = dbo.PACKAGE.Priority " +
-            "AND dbo.TYPE.Type_ID = dbo.PACKAGE.Types AND dbo.PACKAGE.Sender_ID = @sender " + address + priority + weight + type;
+            "AND dbo.TYPE.Type_ID = dbo.PACKAGE.Types AND dbo.PACKAGE.Sender_ID = @sender " + finalAddress + priority + weight + type;
             command = new SqlCommand(sqlQuery, conn);
             command.Parameters.AddWithValue("@sender", customer_id);
-            dataReader = command.ExecuteReader();
-                if (dataReader.HasRows)
-                {
-                    while (dataReader.Read())
-                    {
-                        Label1.Text += dataReader[0].ToString() + "\t" + dataReader[1].ToString() + "\t" + dataReader[2].ToString() + "\t" + dataReader[3].ToString() + "\t" + dataReader[4].ToString() + "\t" + dataReader[5].ToString() + "\n";
-                    }
-                }
-                else
-                {
-                    Label1.Text = "No packages with matching criteria";
-                }
+            GridView1.DataSource = command.ExecuteReader();
+            GridView1.DataBind();
+            
 
                 dataReader.Close();
                 command.Dispose();
                 conn.Close();
             }
-            /*catch(Exception ex)
+            catch(Exception ex)
             {
-                Label1.Text = "Please ensure fields are filled in appropriately";
+                Label1.Text = "Please ensure fields are filled in with proper values";
             }
-        }*/
+        }
 
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {

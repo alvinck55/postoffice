@@ -7,28 +7,29 @@
     <title></title>
 </head>
 <body>
-    <p>
-        <br />
-    </p>
+    <h1>Search for a Package</h1>
     <p>
         &nbsp;</p>
     <form id="form1" runat="server">
         <p>
+            Receiver
             Address :<asp:TextBox ID="Address_TextBox" runat="server" Text=""></asp:TextBox>
         </p>
         <p>
+            Receiver
             State:<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="State" DataValueField="State_ID" AppendDataBoundItems="true">
                 <asp:ListItem>Select</asp:ListItem>
             </asp:DropDownList>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT STATE.State, STATE.State_ID FROM STATE"></asp:SqlDataSource>
         </p>
         <p style="margin-left: 640px">
-            <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-        </p>
+            &nbsp;</p>
         <p>
+            Receiver
             City:<asp:TextBox ID="City_TextBox" runat="server" Text=""></asp:TextBox>
         </p>
         <p>
+            Receiver
             Zip:<asp:TextBox ID="Zip_TextBox" runat="server" Text=""></asp:TextBox>
         </p>
         <p>
@@ -49,6 +50,8 @@
         <p>
             <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+            <asp:GridView ID="GridView1" runat="server">
+            </asp:GridView>
         </p>
         <div>
         </div>

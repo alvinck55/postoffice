@@ -43,7 +43,7 @@ namespace POSTOFFICE3
                     sqlCmd.CommandType = CommandType.StoredProcedure;
                     sqlCmd.Parameters.AddWithValue("@Street", streetText.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@city", cityText.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@State", stateList.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@State", stateList.SelectedValue.ToString());
                     sqlCmd.Parameters.AddWithValue("@Zip", zipText.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@aptn", aptText.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@login", loginid);
@@ -54,6 +54,11 @@ namespace POSTOFFICE3
 
 
             }
+
+        }
+
+        protected void stateList_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
