@@ -13,7 +13,10 @@
             <asp:Label ID="lblUserDetails" runat="server" Text="Label"></asp:Label>
             <br />
             <br />
-            <a href="UpdateAddress.aspx">Update Address</a>
+            <a href="UpdateAddress.aspx">Update Primary Address</a>
+            <br />
+            <a href="EditDeleteAddAddress.aspx">Edit,Add, or Update Addresses</a>
+            
             <br />
             <a href="ShippingHistory.aspx">Shipping History</a>
             <br />

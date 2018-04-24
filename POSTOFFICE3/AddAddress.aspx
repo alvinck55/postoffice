@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddAddress.aspx.cs" Inherits="POSTOFFICE3.AddAddress" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddAddress.aspx.cs" Inherits="POSTOFFICE3.AddAddress1" %>
 
 <!DOCTYPE html>
 
@@ -8,28 +8,27 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <p>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-                <Columns>
-                    <asp:BoundField DataField="Street" HeaderText="Street" SortExpression="Street" />
-                    <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
-                    <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
-                    <asp:BoundField DataField="Zip" HeaderText="Zip" SortExpression="Zip" />
-                    <asp:BoundField DataField="aptn" HeaderText="aptn" SortExpression="aptn" />
-                </Columns>
-            </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT ADDRESS.Street, ADDRESS.State, ADDRESS.City, ADDRESS.Zip, ADDRESS.aptn FROM ADDRESS WHERE ADDRESS.Address_ID in (SELECT CUSTOMER_ADDRESS.Address_ID FROM CUSTOMER_ADDRESS WHERE CUSTOMER_ADDRESS.Customer_ID = @customerid)">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="GridView1" Name="customerid" PropertyName="SelectedValue" />
-                </SelectParameters>
-            </asp:SqlDataSource>
-        </p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
+        <div>
+            <br />
+            Street:<asp:TextBox ID="Street_TextBox" runat="server"></asp:TextBox>
+            <br />
+            APT#(Optional):
+            <asp:TextBox ID="Apt_TextBox" runat="server"></asp:TextBox>
+            <br />
+            City:<asp:TextBox ID="City_TextBox" runat="server"></asp:TextBox>
+            <br />
+            State:<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="State" DataValueField="State_ID">
+            </asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT [State], [State_ID] FROM [STATE]"></asp:SqlDataSource>
+            <br />
+            Zip:<asp:TextBox ID="Zip_TextBox" runat="server"></asp:TextBox>
+            <br />
+            Postal Code(Optional):
+            <asp:TextBox ID="PostalCode_TextBox" runat="server"></asp:TextBox>
+            <br />
+        </div>
+        <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
     </form>
 </body>
 </html>

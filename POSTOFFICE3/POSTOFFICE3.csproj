@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddAddress.aspx" />
+    <Content Include="EditDeleteAddAddress.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Data.aspx" />
     <Content Include="Customer.aspx" />
@@ -101,6 +102,13 @@
     </Compile>
     <Compile Include="AddAddress.aspx.designer.cs">
       <DependentUpon>AddAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditDeleteAddAddress.aspx.cs">
+      <DependentUpon>EditDeleteAddAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditDeleteAddAddress.aspx.designer.cs">
+      <DependentUpon>EditDeleteAddAddress.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
