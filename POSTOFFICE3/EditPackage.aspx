@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -12,8 +17,9 @@
             <asp:Label ID="Label1" runat="server" style="font-size: xx-large" Text="Label"></asp:Label>
             <br />
             <br />
+            <span class="auto-style1"><strong>PRIORITY KEY: </strong></span>
             <br />
-        </div>
+            <span class="auto-style1"><strong>FC</strong></span> =<span class="auto-style1"> </span>First Class <span class="auto-style1"><strong>PE</strong></span> = Priority Mail Express <span class="auto-style1"><strong>PM</strong></span> = Priority Mail <span class="auto-style1"><strong>RG</strong></span> = Retail Ground</div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Package_ID" DataSourceID="SqlDataSource1" >
             <Columns>
                 <asp:CommandField ShowEditButton="True" />
