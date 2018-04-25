@@ -102,16 +102,18 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
         <br />
         <table><tr> <td>        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:BoundField DataField="Package_ID" HeaderText="Package_ID" SortExpression="Package_ID" InsertVisible="False" ReadOnly="True" />
-                <asp:BoundField DataField="Tracking_no" HeaderText="Tracking #" SortExpression="Tracking_no" InsertVisible="False" ReadOnly="True" />
+                <asp:BoundField DataField="Package_ID" HeaderText="Package ID" SortExpression="Package_ID" InsertVisible="False" ReadOnly="True" />
+                <asp:BoundField DataField="Tracking_no" HeaderText="Tracking Number" SortExpression="Tracking_no" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="Fname" HeaderText="Sender First Name" SortExpression="Fname" />
                 <asp:BoundField DataField="Lname" HeaderText="Sender Last Name" SortExpression="Lname" />
-                <asp:BoundField DataField="State" HeaderText="Sender Address State" SortExpression="State" />
-                <asp:BoundField DataField="City" HeaderText="Sender Address City" SortExpression="City" />
-                <asp:BoundField DataField="Street" HeaderText="Sender Address " SortExpression="Street" />
+                <asp:BoundField DataField="State" HeaderText="Sender State" SortExpression="State" />
+                <asp:BoundField DataField="City" HeaderText="Sender City" SortExpression="City" />
+                <asp:BoundField DataField="Street" HeaderText="Sender Street" SortExpression="Street" />
                 <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
-                <asp:BoundField DataField="Weight" HeaderText="Weight(LB)" SortExpression="Weight" />
+                <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
                 <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
+                <asp:BoundField DataField="Receiver_Fname" HeaderText="Receiver First Name" SortExpression="Receiver_Fname" />
+                <asp:BoundField DataField="Receiver_Lname" HeaderText="Receiver Last Name" SortExpression="Receiver_Lname" />
             </Columns>
         </asp:GridView></td><td>        <asp:GridView ID="GridView2" runat="server" style="margin-bottom: 0px; margin-right: 0px;" DataSourceID="SqlDataSource2" AutoGenerateColumns="False">
                 <Columns>
@@ -134,7 +136,7 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
         <br />
         <br />
         <br />
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID, TRACKING.Tracking_no, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID,TRACKING.Tracking_no, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority, PACKAGE.Receiver_Fname, PACKAGE.Receiver_Lname FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
 SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate()))">
             <SelectParameters>
 <asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="facilityID"></asp:ControlParameter>
