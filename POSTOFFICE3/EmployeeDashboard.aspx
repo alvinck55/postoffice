@@ -15,6 +15,7 @@
             <a href="EditPackage.aspx">Edit a Package</a><br />
             <a href="Tracking.aspx">Track a package</a>
             <br />
+             <a href="SearchCustomer.aspx">Search a Customer Shipping History</a><br />
             <br />
             <br />
             <asp:Button ID="Button1" runat="server" Text="Logout" OnClick="Button1_Click" style="height: 26px" />
