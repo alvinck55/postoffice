@@ -37,9 +37,10 @@
                 <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
                 <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
                 <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
+                <asp:BoundField DataField="cost" HeaderText="cost" SortExpression="cost" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="PackageSource" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Weight, TYPE.Type, PRIORITY.Priority
+        <asp:SqlDataSource ID="PackageSource" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Weight, TYPE.Type, PRIORITY.Priority, PACKAGE.cost
 FROM PACKAGE,TYPE,PRIORITY
 WHERE PACKAGE.Tracking_no = @Tracking_no AND PACKAGE.Priority = PRIORITY.Priority_ID AND PACKAGE.Types = TYPE.Type_ID">
             <SelectParameters>
