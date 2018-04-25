@@ -15,7 +15,7 @@
             <br />
             <a href="UpdateAddress.aspx">Update Primary Address</a>
             <br />
-            <a href="EditDeleteAddAddress.aspx">View Addresses</a>
+            <a href="EditDeleteAddAddress.aspx">View/Edit Addresses</a>
             
             <br />
             <a href="ShippingHistory.aspx">Shipping History</a>

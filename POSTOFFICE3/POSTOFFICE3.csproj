@@ -81,6 +81,7 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Data.aspx" />
     <Content Include="Customer.aspx" />
+    <Content Include="EditPackage.aspx" />
     <Content Include="EmployeeDashboard.aspx" />
     <Content Include="FacilityReport.aspx" />
     <Content Include="FacilityTraffic.aspx" />
@@ -131,6 +132,13 @@
     </Compile>
     <Compile Include="Customer.aspx.designer.cs">
       <DependentUpon>Customer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditPackage.aspx.cs">
+      <DependentUpon>EditPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditPackage.aspx.designer.cs">
+      <DependentUpon>EditPackage.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeDashboard.aspx.cs">
       <DependentUpon>EmployeeDashboard.aspx</DependentUpon>

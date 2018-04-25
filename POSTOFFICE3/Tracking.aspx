@@ -72,7 +72,6 @@ WHERE ADDRESS.Address_ID = FACILITY.Address_ID AND FACILITY.Facility_ID = SHIPPI
         </asp:SqlDataSource>
         <br />
         <br />
-        <a href="EmployeeDashboard.aspx">Employee Dashboard</a>
     </form>
 
 </body>
