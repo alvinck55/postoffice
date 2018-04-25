@@ -21,12 +21,121 @@
         </asp:DropDownList>
         <br />
         <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+        <table><tr> <td>        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3">
             <Columns>
-                <asp:BoundField DataField="Tracking_no" HeaderText="Tracking_no" SortExpression="Tracking_no" />
+                <asp:BoundField DataField="Column1" HeaderText="Number of Parcels" ReadOnly="True" SortExpression="Column1" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())">
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Types = 'EE')">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="TextBox1" DefaultValue="" Name="facilityID" PropertyName="Text" />
+                    <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            </td> <td>        <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource4">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of Letters" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+        </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Types = 'LE')">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </td> <td>        <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource5">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of First Class Mail" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+        </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Priority = 'FC')">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </td> <td>        <asp:GridView ID="GridView6" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource6">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of Priority Mail Express" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+        </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Priority = 'PE')">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </td> <td>        <asp:GridView ID="GridView7" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource7">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of Priority Mail" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+        </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Priority = 'PM')">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </td> <td>        <asp:GridView ID="GridView8" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource8">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of Retail Ground Mail" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+        </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Priority = 'RG')">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32"/>
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </td>   </tr></table>
+
+
+
+
+        <br />
+        <br />
+        <table><tr> <td>        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+            <Columns>
+                <asp:BoundField DataField="Package_ID" HeaderText="Package_ID" SortExpression="Package_ID" InsertVisible="False" ReadOnly="True" />
+                <asp:BoundField DataField="Tracking_no" HeaderText="Tracking #" SortExpression="Tracking_no" InsertVisible="False" ReadOnly="True" />
+                <asp:BoundField DataField="Fname" HeaderText="Sender First Name" SortExpression="Fname" />
+                <asp:BoundField DataField="Lname" HeaderText="Sender Last Name" SortExpression="Lname" />
+                <asp:BoundField DataField="State" HeaderText="Sender Address State" SortExpression="State" />
+                <asp:BoundField DataField="City" HeaderText="Sender Address City" SortExpression="City" />
+                <asp:BoundField DataField="Street" HeaderText="Sender Address " SortExpression="Street" />
+                <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
+                <asp:BoundField DataField="Weight" HeaderText="Weight(LB)" SortExpression="Weight" />
+                <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
+            </Columns>
+        </asp:GridView></td><td>        <asp:GridView ID="GridView2" runat="server" style="margin-bottom: 0px; margin-right: 0px;" DataSourceID="SqlDataSource2" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="State" HeaderText="Receiver Address State" SortExpression="State" />
+                    <asp:BoundField DataField="City" HeaderText="Receiver Address City" SortExpression="City" />
+                    <asp:BoundField DataField="Street" HeaderText="Receiver Address " SortExpression="Street" />
+                </Columns>
+        </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT ADDRESS.State, ADDRESS.City, ADDRESS.Street FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Receiver_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate()))">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </td> </tr></table>
+
+        <br />
+
+        <br />
+        <br />
+        <br />
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID, TRACKING.Tracking_no, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate()))">
             <SelectParameters>
 <asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="facilityID"></asp:ControlParameter>
                 <asp:ControlParameter ControlID="DropDownList1" Name="days" PropertyName="SelectedValue" DefaultValue="-30" Type="Int32" />

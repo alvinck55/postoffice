@@ -15,6 +15,7 @@ namespace POSTOFFICE3
         SqlDataReader dataReader;
         string sqlQuery;
         string senderAddressID;
+        string senderID;
         string receiverAddressID;
         string username;
         string packageID;
@@ -27,6 +28,33 @@ namespace POSTOFFICE3
             }
             username = Session["username"].ToString();
             logText.Text = "Currently logged in as: " + Session["username"];
+            try
+            {
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
+                conn = new SqlConnection(connectionString);
+
+                conn.Open();
+
+                sqlQuery = "SELECT dbo.CUSTOMER.Customer_ID FROM dbo.CUSTOMER WHERE dbo.CUSTOMER.Email = @username";
+                command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@username", username);
+                dataReader = command.ExecuteReader();
+
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        senderID = dataReader.GetValue(dataReader.GetOrdinal("Customer_ID")).ToString();
+                    }
+                }
+                dataReader.Close();
+                command.Dispose();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Label1.Text = "ERROR FOR USERNAME LOGIN";
+            }
         }
             
         protected void Button1_Click(object sender, EventArgs e)
@@ -82,10 +110,26 @@ namespace POSTOFFICE3
                     {
                         senderAddressID = dataReader[0].ToString();
                     }
-                }
+                    dataReader.Close();
+                    command.Dispose();
+                    
+                    sqlQuery = "INSERT INTO dbo.CUSTOMER_ADDRESS(Customer_ID,Address_ID) VALUES(@customerid,@addressid)";
+                    command = new SqlCommand(sqlQuery, conn);
+                    command.Parameters.AddWithValue("@customerid", senderID);
+                    command.Parameters.AddWithValue("@addressid", senderAddressID);
+                    command.ExecuteNonQuery();
 
-                dataReader.Close();
-                command.Dispose();
+                    command.Dispose();
+                }
+                else
+                {
+                    dataReader.Close();
+                    command.Dispose();
+                }
+               
+               
+                
+
 
 
 
@@ -157,7 +201,7 @@ namespace POSTOFFICE3
                 conn.Open();
 
                 sqlQuery = "INSERT INTO dbo.PACKAGE(Sender_ID,Weight,Cost,Types,Priority,Sender_Address_ID,Receiver_Address_ID)" +
-                    "VALUES((SELECT dbo.CUSTOMER.Customer_ID FROM dbo.CUSTOMER WHERE dbo.CUSTOMER.Email= @email), @weight,'1.0' ,@type,@priority,@Sender_Address_ID,@Receiver_Address_ID)" +
+                    "VALUES(@senderid, @weight,'1.0' ,@type,@priority,@Sender_Address_ID,@Receiver_Address_ID)" +
                     " DECLARE @Package_ID int DECLARE @Tracking_no int SET @Package_ID = SCOPE_IDENTITY() SET @Tracking_no = (SELECT TRACKING.Tracking_no FROM TRACKING WHERE TRACKING.Package_ID = @Package_ID) SELECT @Package_ID,@Tracking_no";
 
 
@@ -167,6 +211,7 @@ namespace POSTOFFICE3
                 command.Parameters.AddWithValue("@priority", DropDownList2.SelectedItem.Value.ToString());
                 command.Parameters.AddWithValue("@Receiver_Address_ID", receiverAddressID);
                 command.Parameters.AddWithValue("@Sender_Address_ID", senderAddressID);
+                command.Parameters.AddWithValue("@senderid", senderID);
                 if (DropDownList1.SelectedItem.Value.ToString() == "CP")
                 {
                     command.Parameters.AddWithValue("@weight", Convert.ToDecimal(Weight_TextBox.Text));
@@ -222,7 +267,7 @@ namespace POSTOFFICE3
 
         protected void DropDownList1_SelectedIndexChanged1(object sender, EventArgs e)
         {
-            if(DropDownList1.SelectedItem.Value.ToString() == "EE")
+            if(DropDownList1.SelectedItem.Value.ToString() == "LE")
             {
                 Weight_TextBox.ReadOnly = true;
                 Weight_TextBox.BackColor = System.Drawing.Color.LightGray;

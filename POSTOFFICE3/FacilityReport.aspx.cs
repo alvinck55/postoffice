@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace POSTOFFICE3
 {
-    public partial class FacilityTraffic : System.Web.UI.Page
+    public partial class FacilityReport : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,8 +45,8 @@ namespace POSTOFFICE3
                     }
                 }
 
-                Label1.Text = "Facility " + facility_id +" Report";
-                TextBox1.Text = facility_id;
+                Label1.Text = "Facility " + facility_id;
+                Session["facility_id"] = facility_id;
                 dataReader.Close();
                 command.Dispose();
                 conn.Close();
@@ -56,6 +56,5 @@ namespace POSTOFFICE3
                 Label1.Text = "ERROR FOR USERNAME LOGIN";
             }
         }
-        
     }
 }
