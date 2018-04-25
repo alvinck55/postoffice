@@ -270,8 +270,8 @@ namespace POSTOFFICE3
 
                 conn.Open();
 
-                sqlQuery = "INSERT INTO dbo.PACKAGE(Sender_ID,Weight,Types,Priority,Sender_Address_ID,Receiver_Address_ID)" +
-                    "VALUES(@senderid, @weight,@type,@priority,@Sender_Address_ID,@Receiver_Address_ID)" +
+                sqlQuery = "INSERT INTO dbo.PACKAGE(Sender_ID,Weight,Types,Priority,Sender_Address_ID,Receiver_Address_ID,Receiver_Fname,Receiver_Lname)" +
+                    "VALUES(@senderid, @weight,@type,@priority,@Sender_Address_ID,@Receiver_Address_ID,@fname,@lname)" +
                     " DECLARE @Package_ID int DECLARE @Tracking_no int SET @Package_ID = SCOPE_IDENTITY() SET @Tracking_no = (SELECT TRACKING.Tracking_no FROM TRACKING WHERE TRACKING.Package_ID = @Package_ID) SELECT @Package_ID,@Tracking_no";
 
 
@@ -281,6 +281,8 @@ namespace POSTOFFICE3
                 command.Parameters.AddWithValue("@Receiver_Address_ID", receiverAddressID);
                 command.Parameters.AddWithValue("@Sender_Address_ID", senderAddressID);
                 command.Parameters.AddWithValue("@senderid", senderID);
+                command.Parameters.AddWithValue("@fname", TextBox8.Text);
+                command.Parameters.AddWithValue("@lname", TextBox9.Text);
                 if (DropDownList1.SelectedItem.Value.ToString() == "CP")
                 {
                     command.Parameters.AddWithValue("@weight", Convert.ToDecimal(Weight_TextBox.Text));
