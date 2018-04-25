@@ -116,6 +116,10 @@ namespace POSTOFFICE3
                 Label1.Text = "Customer does not exist";
             }
         }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            GridView2.DataBind();
+        }
 
     }
 }
