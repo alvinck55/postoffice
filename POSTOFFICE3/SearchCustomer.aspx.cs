@@ -95,12 +95,13 @@ namespace POSTOFFICE3
                     zip = " AND ADDRESS.Zip = '" + TextBox5.Text + "'";
                 }
 
-                sqlQuery = "SELECT CUSTOMER.Customer_ID, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.Street, ADDRESS.City, ADDRESS.Zip FROM CUSTOMER,ADDRESS WHERE ADDRESS.Address_ID = CUSTOMER.Address_ID " + city + state + address+ fname + lname + zip;
+                sqlQuery = "SELECT CUSTOMER.Customer_ID, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.Street, ADDRESS.City,ADDRESS.State, ADDRESS.Zip FROM CUSTOMER,ADDRESS WHERE CUSTOMER.Customer_ID in (SELECT DISTINCT CUSTOMER_ADDRESS.Customer_ID FROM CUSTOMER_ADDRESS,ADDRESS WHERE CUSTOMER_ADDRESS.Address_ID = ADDRESS.Address_ID " + city + state + address+ fname + lname + zip+") AND ADDRESS.Address_ID = CUSTOMER.Address_ID";
                 command = new SqlCommand(sqlQuery, conn);
 
                 GridView1.DataSource = command.ExecuteReader();
                 GridView1.DataBind();
 
+                
                 
 
        
@@ -120,6 +121,14 @@ namespace POSTOFFICE3
         {
             GridView2.DataBind();
         }
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
 
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

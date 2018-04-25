@@ -33,7 +33,8 @@
             <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </div>
-        <asp:GridView ID="GridView1" runat="server">
+        <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+
         </asp:GridView>
     &nbsp;Enter Customer ID:&nbsp;
             <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>

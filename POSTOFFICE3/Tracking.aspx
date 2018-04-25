@@ -51,6 +51,12 @@ WHERE PACKAGE.Tracking_no = @Tracking_no AND PACKAGE.Priority = PRIORITY.Priorit
         <p class="auto-style2">
             <strong>Tracking Information:</strong></p>
         <p>
+            <span class="auto-style2">DESTINATION ADDRESS:</span>&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style2">ESTIMATED DELIVERY DATE:</span>&nbsp;&nbsp;
+            <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+        </p>
+        <p>
             <span class="auto-style2">CURRENT STATUS</span>:
             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </p>

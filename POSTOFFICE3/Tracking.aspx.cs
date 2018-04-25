@@ -33,9 +33,10 @@ namespace POSTOFFICE3
         }
         private void trackPackage()
         {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
             try
             {
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
+                
                 conn = new SqlConnection(connectionString);
 
                 conn.Open();
@@ -73,6 +74,22 @@ namespace POSTOFFICE3
                     else
                     {
                         Label1.Text = output;
+                        dataReader.Close();
+                        command.Dispose();
+                        sqlQuery = "SELECT dbo.ADDRESS.Street, dbo.ADDRESS.City, dbo.ADDRESS.State, dbo.ADDRESS.Zip, dbo.ADDRESS.aptn, TRACKING.Delivery_Date FROM dbo.ADDRESS,dbo.TRACKING WHERE" +
+                            " dbo.TRACKING.Tracking_no = @tracking AND dbo.ADDRESS.Address_ID=dbo.TRACKING.Destination_Address_ID ";
+                        command = new SqlCommand(sqlQuery, conn);
+                        command.Parameters.AddWithValue("@tracking", TrackingNumberTextBox.Text);
+                        dataReader = command.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            output = "#" + dataReader.GetValue(dataReader.GetOrdinal("aptn")).ToString() + " " + dataReader.GetValue(dataReader.GetOrdinal("Street")).ToString() + "   " + dataReader.GetValue(dataReader.GetOrdinal("City")).ToString() +
+                                "," + dataReader.GetValue(dataReader.GetOrdinal("State")).ToString() + " " + dataReader.GetValue(dataReader.GetOrdinal("Zip")).ToString();
+                            Label3.Text = output;
+                            Label4.Text = dataReader.GetValue(dataReader.GetOrdinal("Delivery_Date")).ToString();
+                            Label2.Text = "";
+                        }
+                        Label3.Text = output;
                         Label2.Text = "";
                     }
 
@@ -80,6 +97,8 @@ namespace POSTOFFICE3
                 else
                 {
                     Label1.Text = "";
+                    Label3.Text = "";
+                    Label4.Text = "";
                     Label2.Text = "invalid tracking number";
                 }
                 dataReader.Close();
