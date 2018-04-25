@@ -31,6 +31,8 @@
         </div>
         <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-    </form>
+        <br />
+        <br />
+        <a href="Dashboard.aspx">Dashboard</a></form>
 </body>
 </html>

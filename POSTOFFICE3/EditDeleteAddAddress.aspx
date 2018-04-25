@@ -49,7 +49,7 @@
         <p>
             &nbsp;</p>
         <p>
-            &nbsp;</p>
+            <a href="Dashboard.aspx">Dashboard</a></p>
         <p>
             &nbsp;</p>
         <p>

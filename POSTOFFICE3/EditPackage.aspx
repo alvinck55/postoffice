@@ -39,6 +39,8 @@
                 <asp:Parameter Name="Package_ID" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-    </form>
+        <br />
+        <br />
+        <a href="EmployeeDashboard.aspx">Dashboard</a></form>
 </body>
 </html>

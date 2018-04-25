@@ -69,6 +69,7 @@ AND a.Address_ID = p.Receiver_Address_ID
                 <asp:BoundField DataField="Last_updated" HeaderText="Last Updated" SortExpression="Last_updated" />
             </Columns>
             </asp:GridView>
-    </form>
+        <br />
+        <a href="EmployeeDashboard.aspx">Dashboard</a></form>
 </body>
 </html>

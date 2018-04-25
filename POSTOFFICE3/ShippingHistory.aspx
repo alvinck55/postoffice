@@ -31,6 +31,7 @@
             AND c.Customer_ID=@customerid
             AND p.Types = t.Type_ID
             AND p.Priority = r.Priority_ID
+ORDER BY p.Last_updated DESC
 ">
             <SelectParameters>
                 <asp:ControlParameter ControlID="DropDownList1" Name="days" PropertyName="SelectedValue" Type="Int32" DefaultValue="-30"/>

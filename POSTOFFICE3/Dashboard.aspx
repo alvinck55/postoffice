@@ -45,8 +45,8 @@ AND p.Package_ID = t.Package_ID
 AND t.Status &lt;&gt; 'D'
 AND t.Status &lt;&gt; 'R'
 AND p.Sender_ID=c.Customer_ID
-AND c.Customer_ID=@customerid;
-">
+AND c.Customer_ID=@customerid
+ORDER by p.Last_updated DESC">
                 <SelectParameters>
                     <asp:SessionParameter Name="customerid" SessionField="customer_id" />
                 </SelectParameters>

@@ -54,9 +54,7 @@
             </asp:GridView>
         </p>
         <div>
-        </div>
-        <div style="margin-left: 440px">
-        </div>
+        <a href="Dashboard.aspx">Dashboard</a></div>
     </form>
 </body>
 </html>
