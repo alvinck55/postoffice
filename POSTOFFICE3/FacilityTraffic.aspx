@@ -161,7 +161,27 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
 
 
         <br />
-        <br />
+        <table><tr> <td>        <asp:GridView ID="GridView9" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource9">
+            <Columns>
+                <asp:BoundField DataField="Column1" HeaderText="Packages Delivered" ReadOnly="True" SortExpression="Column1" />
+            </Columns>
+        </asp:GridView> </td> <td>        <asp:GridView ID="GridView10" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource10">
+            <Columns>
+                <asp:BoundField DataField="Column1" HeaderText="Packages Failed to Deliver" ReadOnly="True" SortExpression="Column1" />
+            </Columns>
+        </asp:GridView> </td> <td>        <asp:GridView ID="GridView11" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource11">
+            <Columns>
+                <asp:BoundField DataField="Column1" HeaderText="Packages Cancelled" ReadOnly="True" SortExpression="Column1" />
+            </Columns>
+        </asp:GridView> </td> <td>        <asp:GridView ID="GridView12" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource12">
+            <Columns>
+                <asp:BoundField DataField="Column1" HeaderText="Packages In Transit" ReadOnly="True" SortExpression="Column1" />
+            </Columns>
+        </asp:GridView> </td> <td>        <asp:GridView ID="GridView13" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource13">
+            <Columns>
+                <asp:BoundField DataField="Column1" HeaderText="Packages Returned" ReadOnly="True" SortExpression="Column1" />
+            </Columns>
+        </asp:GridView> </td></tr></table><br />
         <table><tr> <td>        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:BoundField DataField="Package_ID" HeaderText="Package ID" SortExpression="Package_ID" InsertVisible="False" ReadOnly="True" />
@@ -213,9 +233,16 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
                 </asp:SqlDataSource>
             </td> </tr></table>
 
-        <br />
+
+
+
 
         <br />
+
+
+
+        <br />
+
         <br />
         <br />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID,TRACKING.Tracking_no,Package.Sender_ID, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority, PACKAGE.Receiver_Fname, PACKAGE.Receiver_Lname FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
