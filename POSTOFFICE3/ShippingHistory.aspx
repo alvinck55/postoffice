@@ -24,10 +24,11 @@
         <br />
         <asp:TextBox ID="TextBox1" runat="server" Visible="False"></asp:TextBox>
         <br />
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT         p.Tracking_no, t.Type, p.Weight, r.Priority, p.Last_updated
-            FROM PACKAGE p, CUSTOMER c, TYPE t, PRIORITY r
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT         p.Tracking_no, t.Type, p.Weight, r.Priority,a.Street,a.City,a.Zip,a.State, p.Last_updated
+            FROM PACKAGE p, CUSTOMER c, TYPE t, PRIORITY r,ADDRESS a
             WHERE p.Last_updated &gt;= DATEADD(day,@days, getdate())
             AND p.Sender_ID=c.Customer_ID
+            AND a.Address_ID = p.Sender_Address_ID
             AND c.Customer_ID=@customerid
             AND p.Types = t.Type_ID
             AND p.Priority = r.Priority_ID
@@ -41,11 +42,15 @@ ORDER BY p.Last_updated DESC
         <strong>Shipping Information:</strong></p>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2">
             <Columns>
-                <asp:BoundField DataField="Tracking_no" HeaderText="Tracking Number" SortExpression="Tracking_no" />
+                <asp:BoundField DataField="Tracking_no" HeaderText="Tracking_no" SortExpression="Tracking_no" />
                 <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" />
                 <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
                 <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
-                <asp:BoundField DataField="Last_updated" HeaderText="Date Sent" SortExpression="Last_updated" />
+                <asp:BoundField DataField="Street" HeaderText="Street" SortExpression="Street" />
+                <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
+                <asp:BoundField DataField="Zip" HeaderText="Zip" SortExpression="Zip" />
+                <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
+                <asp:BoundField DataField="Last_updated" HeaderText="Last_updated" SortExpression="Last_updated" />
             </Columns>
         </asp:GridView>
         <br />

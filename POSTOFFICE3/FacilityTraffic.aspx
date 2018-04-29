@@ -100,10 +100,33 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
 
         <br />
         <br />
+        <table><tr> <td>           <asp:GridView ID="GridView9" runat="server" DataSourceID="SqlDataSource9" AutoGenerateColumns="False">
+            <Columns>
+                <asp:BoundField DataField="Column1" HeaderText="Number of Packages Delivered" ReadOnly="True" SortExpression="Column1" />
+            </Columns>
+            </asp:GridView> </td> <td>            <asp:GridView ID="GridView10" runat="server" DataSourceID="SqlDataSource10" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of Packages Failed to Deliver" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+            </asp:GridView> </td> <td>            <asp:GridView ID="GridView11" runat="server" DataSourceID="SqlDataSource11" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of Packages Cancelled" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+            </asp:GridView> </td> <td>        <asp:GridView ID="GridView12" runat="server" DataSourceID="SqlDataSource12" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of Packages In Transit" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+        </asp:GridView> </td> <td>        <asp:GridView ID="GridView13" runat="server" DataSourceID="SqlDataSource13" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="Column1" HeaderText="Number of Packages Returned" ReadOnly="True" SortExpression="Column1" />
+                </Columns>
+        </asp:GridView> </td> </tr></table><br />
+        <br />
         <table><tr> <td>        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:BoundField DataField="Package_ID" HeaderText="Package ID" SortExpression="Package_ID" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="Tracking_no" HeaderText="Tracking Number" SortExpression="Tracking_no" InsertVisible="False" ReadOnly="True" />
+                <asp:BoundField DataField="Sender_ID" HeaderText="Customer ID" SortExpression="Sender_ID" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="Fname" HeaderText="Sender First Name" SortExpression="Fname" />
                 <asp:BoundField DataField="Lname" HeaderText="Sender Last Name" SortExpression="Lname" />
                 <asp:BoundField DataField="State" HeaderText="Sender State" SortExpression="State" />
@@ -136,17 +159,59 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
         <br />
         <br />
         <br />
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID,TRACKING.Tracking_no, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority, PACKAGE.Receiver_Fname, PACKAGE.Receiver_Lname FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID,TRACKING.Tracking_no,Package.Sender_ID, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority, PACKAGE.Receiver_Fname, PACKAGE.Receiver_Lname FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
 SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate()))">
             <SelectParameters>
-<asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="facilityID"></asp:ControlParameter>
+<asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="facilityID" DefaultValue=""></asp:ControlParameter>
                 <asp:ControlParameter ControlID="DropDownList1" Name="days" PropertyName="SelectedValue" DefaultValue="-30" Type="Int32" />
             </SelectParameters>
         </asp:SqlDataSource>
         <p>
             <asp:TextBox ID="TextBox1" visible="false" runat="server" Text="1"></asp:TextBox>
+ 
+            <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'D' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                    <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+
+            <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'F' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                    <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+        </p>
+        <p>
+
+            <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'C' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                    <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:SqlDataSource>
         </p>
         <a href="EmployeeDashboard.aspx">Employee Dashboard</a>
+
+        <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'T' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+
+        <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'R' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
+                <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+            </SelectParameters>
+        </asp:SqlDataSource>
 
     </form>
 </body>
