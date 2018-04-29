@@ -24,6 +24,8 @@ namespace POSTOFFICE3
 
             }
             username = Session["username"].ToString();
+            loggedin.Text = " " + Session["username"];
+
 
             try
             {
@@ -59,6 +61,12 @@ namespace POSTOFFICE3
         {
             GridView1.DataBind();
             GridView2.DataBind();
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

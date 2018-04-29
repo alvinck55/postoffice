@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Tracking</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
     <style type="text/css">
         .auto-style1 {
             font-size: x-large;

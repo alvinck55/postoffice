@@ -5,29 +5,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Dashboard</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
 </head>
 <body>
     <form id="form1" runat="server">
-        <h1>Post Office Dashboard&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
-            </h1>
-        <div>
-            <asp:Label ID="lblUserDetails" runat="server" Text="Label"></asp:Label>
-            <br />
-            <br />
-            <a href="UpdateAddress.aspx">Update Primary Address</a>
-            <br />
-            <a href="EditDeleteAddAddress.aspx">View/Edit Addresses</a>
+      
+        <nav class="navbar navbar-dark" style="background-color: #471268">
+              <a class="navbar-brand navbar-left" href="Dashboard.aspx">Dashboard</a>
+            <asp:Label ID="loggedin" Text="" class="navbar-text navbar-center" runat="server" />
+
+          
+            <asp:Button ID="btnLogout" runat="server" Text="Logout" class="btn btn-danger" OnClick="btnLogout_Click" />
+
+        </nav>
+        
+       
+        
+        <div class="col-md-4">
             
             <br />
-            <a href="ShippingHistory.aspx">Shipping History</a>
             <br />
-            <a href="Tracking.aspx">Track a Package</a>
+            <a href="UpdateAddress.aspx" class="btn btn-primary btn-sm btn-block" role="button">Update Primary Address</a>
             <br />
-            <a href="PackageEntry.aspx">Create a Shipping Label</a>
+            <a href="EditDeleteAddAddress.aspx" class="btn btn-primary btn-sm btn-block" role="button">View/Edit Addresses</a>
+            
             <br />
-            <a href="SearchPackage.aspx">Search your packages</a><br />
-            <a href="CustomerAddressSearch.aspx">Address Shipping History</a> <br />
+            <a href="ShippingHistory.aspx" class="btn btn-primary btn-sm btn-block" role="button">Shipping History</a>
+            <br />
+            <a href="Tracking.aspx" class="btn btn-primary btn-sm btn-block" role="button">Track a Package</a>
+            <br />
+            <a href="PackageEntry.aspx" class="btn btn-primary btn-sm btn-block" role="button">Create a Shipping Label</a>
+            <br />
+            <a href="SearchPackage.aspx" class="btn btn-primary btn-sm  btn-block" role="button">Search your packages</a><br />
+            <a href="CustomerAddressSearch.aspx" class="btn btn-primary btn-sm btn-block" role="button">Address Shipping History</a> <br />
             <br />
             <br />
             <br />

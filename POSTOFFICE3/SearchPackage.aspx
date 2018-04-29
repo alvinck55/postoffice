@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+        <link href="css/bootstrap.css" rel="stylesheet" />
+
 </head>
 <body>
     <h1>Search for a Package</h1>
