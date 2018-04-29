@@ -54,7 +54,7 @@ AND a.Address_ID = p.Receiver_Address_ID
                 <asp:ControlParameter ControlID="TextBox6" Name="customerid" PropertyName="Text" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2">
+        <table><tr> <td>        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2">
             <Columns>
                 <asp:BoundField DataField="Tracking_no" HeaderText="Tracking Number" SortExpression="Tracking_no" />
                 <asp:BoundField DataField="Receiver_Fname" HeaderText="Receiver First Name" SortExpression="Receiver_Fname" />
@@ -68,8 +68,29 @@ AND a.Address_ID = p.Receiver_Address_ID
                 <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
                 <asp:BoundField DataField="Last_updated" HeaderText="Last Updated" SortExpression="Last_updated" />
             </Columns>
-            </asp:GridView>
+            </asp:GridView> </td><td><asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3">
+            <Columns>
+                <asp:BoundField DataField="Street" HeaderText="Sender Street" SortExpression="Street" />
+                <asp:BoundField DataField="State" HeaderText="Sender State" SortExpression="State" />
+                <asp:BoundField DataField="City" HeaderText="Sender City" SortExpression="City" />
+                <asp:BoundField DataField="Zip" HeaderText="Sender Zip" SortExpression="Zip" />
+            </Columns>
+        </asp:GridView> </td></tr></table>
+
         <br />
-        <a href="EmployeeDashboard.aspx">Dashboard</a></form>
+        <a href="EmployeeDashboard.aspx">Dashboard</a>
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT       a.Street, a.State, a.City, a.Zip
+            FROM PACKAGE p, CUSTOMER c,ADDRESS a
+            WHERE
+        p.Sender_ID=c.Customer_ID
+AND a.Address_ID = p.Sender_Address_ID
+            AND c.Customer_ID=@customerid
+
+">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="TextBox6" Name="customerid" PropertyName="Text" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </form>
 </body>
 </html>

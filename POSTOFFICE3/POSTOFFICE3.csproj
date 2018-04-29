@@ -66,16 +66,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\bootstrap-grid.css.map" />
-    <Content Include="css\bootstrap-grid.min.css.map" />
-    <Content Include="css\bootstrap-reboot.css.map" />
-    <Content Include="css\bootstrap-reboot.min.css.map" />
-    <Content Include="css\bootstrap.css.map" />
-    <Content Include="css\bootstrap.min.css.map" />
-    <Content Include="js\bootstrap.bundle.js.map" />
-    <Content Include="js\bootstrap.bundle.min.js.map" />
-    <Content Include="js\bootstrap.js.map" />
-    <Content Include="js\bootstrap.min.js.map" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\POSTOFFICE3 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
@@ -87,13 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddAddress.aspx" />
+    <Content Include="AddressSearch.aspx" />
     <Content Include="Cancel.aspx" />
-    <Content Include="css\bootstrap-grid.css" />
-    <Content Include="css\bootstrap-grid.min.css" />
-    <Content Include="css\bootstrap-reboot.css" />
-    <Content Include="css\bootstrap-reboot.min.css" />
-    <Content Include="css\bootstrap.css" />
-    <Content Include="css\bootstrap.min.css" />
+    <Content Include="CustomerAddressSearch.aspx" />
     <Content Include="EditDeleteAddAddress.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Data.aspx" />
@@ -103,10 +89,6 @@
     <Content Include="FacilityReport.aspx" />
     <Content Include="FacilityTraffic.aspx" />
     <Content Include="Home.aspx" />
-    <Content Include="js\bootstrap.bundle.js" />
-    <Content Include="js\bootstrap.bundle.min.js" />
-    <Content Include="js\bootstrap.js" />
-    <Content Include="js\bootstrap.min.js" />
     <Content Include="PackageEntry.aspx" />
     <Content Include="newaddress.aspx" />
     <Content Include="Registration.aspx" />
@@ -127,12 +109,26 @@
     <Compile Include="AddAddress.aspx.designer.cs">
       <DependentUpon>AddAddress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddressSearch.aspx.cs">
+      <DependentUpon>AddressSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddressSearch.aspx.designer.cs">
+      <DependentUpon>AddressSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cancel.aspx.cs">
       <DependentUpon>Cancel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Cancel.aspx.designer.cs">
       <DependentUpon>Cancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerAddressSearch.aspx.cs">
+      <DependentUpon>CustomerAddressSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerAddressSearch.aspx.designer.cs">
+      <DependentUpon>CustomerAddressSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditDeleteAddAddress.aspx.cs">
       <DependentUpon>EditDeleteAddAddress.aspx</DependentUpon>
