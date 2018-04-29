@@ -103,17 +103,27 @@ namespace POSTOFFICE3
                     while (dataReader.Read())
                     {
                         addressid = dataReader[0].ToString();
-                        Label1.Text = "Address successfully added";
+        
                     }
                     dataReader.Close();
                     command.Dispose();
-                    sqlQuery = "INSERT INTO CUSTOMER_ADDRESS(Customer_ID,Address_ID) VALUES(@customerid,@addressid)";
+                    sqlQuery = "IF NOT EXISTS (SELECT CUSTOMER_ADDRESS.Customer_ID FROM CUSTOMER_ADDRESS WHERE CUSTOMER_ADDRESS.Customer_ID = @customerid AND CUSTOMER_ADDRESS.Address_ID = @addressid) BEGIN INSERT INTO CUSTOMER_ADDRESS(Customer_ID,Address_ID) VALUES(@customerid,@addressid) END";
                     command = new SqlCommand(sqlQuery, conn);
                     command.Parameters.AddWithValue("@customerid", customerid);
                     command.Parameters.AddWithValue("@addressid", addressid);
-                    command.ExecuteNonQuery();
 
-                    Label1.Text = "Address successfully added";
+                    int rows;
+                     rows = command.ExecuteNonQuery();
+                    if(rows == 1)
+                    {
+                        Label1.Text = "Address successfully added";
+                    }
+                    else
+                    {
+                        Label1.Text = "Address already exists under this account";
+                    }
+
+                    
 
          
                 }
