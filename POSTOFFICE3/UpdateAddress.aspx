@@ -5,9 +5,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Update Address</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
 </head>
 <body>
     <form id="form1" runat="server">
+            <nav class="navbar navbar-dark" style="background-color: #471268">
+              <a class="navbar-brand navbar-left" href="Dashboard.aspx">Dashboard</a>
+            <asp:Label ID="loggedin" Text="" class="navbar-text navbar-center" runat="server" />
+
+          
+            <asp:Button ID="btnLogout" runat="server" Text="Logout" class="btn btn-danger" OnClick="btnLogout_Click" />
+
+        </nav>
         <h1>Post Office Update Address</h1>
         <asp:Label ID="logText" runat="server" Text=""></asp:Label>
         <br />

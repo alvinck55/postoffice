@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Tracking</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
     <style type="text/css">
         .auto-style1 {
             font-size: x-large;
@@ -16,6 +18,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <nav class="navbar navbar-dark" style="background-color: #ea8b1e">
+             <asp:HyperLink ID="dashboardcheck" Text="Dashboard" class="navbar-brand navbar-right" runat="server" />
+            <asp:Label ID="loggedin" Text="" class="navbar-text navbar-center" runat="server" />
+
+          
+            <asp:Button ID="btnLogout" runat="server" Text="Logout" class="btn btn-danger" OnClick="btnLogout_Click" />
+
+        </nav>
         <h1>Post Office Tracking</h1>
         <asp:Label ID="logText" runat="server" Text=""></asp:Label>
         <br />

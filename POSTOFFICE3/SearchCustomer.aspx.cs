@@ -26,6 +26,8 @@ namespace POSTOFFICE3
 
             }
             username = Session["username"].ToString();
+            loggedin.Text = "Employee ID: " + Session["username"];
+
 
         }
 
@@ -129,6 +131,12 @@ namespace POSTOFFICE3
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

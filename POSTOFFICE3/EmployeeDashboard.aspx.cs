@@ -19,10 +19,17 @@ namespace POSTOFFICE3
 
             }
             username = Session["username"].ToString();
+            loggedin.Text = "Employee ID: " + Session["username"];
 
         }
 
         protected void Button1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Abandon();
             Response.Redirect("Home.aspx");

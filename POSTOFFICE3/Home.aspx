@@ -24,17 +24,25 @@
                     <h1>Welcome to the Post Office Database.</h1>
                 </div>
             </div>
-            <p>Username: </p>
-            <asp:TextBox ID="usernameText" Text="" runat="server"/>
-            <p>Password: </p>
-            <asp:TextBox ID="passwordText" Text="Enter password here" TextMode ="Password" runat="server" />
-            <asp:Button ID="submitButton" Text="Sign in" runat="server" OnClick="submitEventMethod"/>
-            <asp:Label ID="statusMessage" Text="Please enter username and password" runat="server" />
-               
+            <div class="col-md-4">
+                <p>Username: </p>
+                <asp:TextBox ID="usernameText" Text="" CssClass="form-control" runat="server"/>
+                <p>Password: </p>
+                <asp:TextBox ID="passwordText" Text="Enter password here" CssClass="form-control" TextMode ="Password" runat="server" />
+                <p></p>
+                <asp:Button ID="submitButton" Text="Sign in" runat="server" CssClass="btn btn-primary" OnClick="submitEventMethod"/>
+                <p></p>
+                <asp:Label ID="statusMessage" Text="Please enter username and password" runat="server" />
+                <p></p>
+                <a href="Registration.aspx">Registration</a> 
+                <p></p>
+                <a href="Tracking.aspx" class="btn btn-primary btn-lg active" role="button">Track a Package</a>
+
+            </div>
 
 
         </div>
     </form>
-    <a href="Registration.aspx">Registration</a>  
+     
 </body>
 </html>

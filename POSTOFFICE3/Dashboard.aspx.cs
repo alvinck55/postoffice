@@ -23,7 +23,7 @@ namespace POSTOFFICE3
 
 
             }
-            lblUserDetails.Text = "Currently logged in as: " + Session["username"];
+            loggedin.Text = "Currently logged in as: " + Session["username"];
             username = Session["username"].ToString();
 
             try
@@ -51,7 +51,7 @@ namespace POSTOFFICE3
             }
             catch (Exception ex)
             {
-                lblUserDetails.Text = "ERROR FOR USERNAME LOGIN";
+                loggedin.Text = "ERROR FOR USERNAME LOGIN";
             }
         }
 

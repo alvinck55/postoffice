@@ -11,6 +11,7 @@ namespace POSTOFFICE3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            loggedin.Text = "Employee ID: " + Session["username"];
 
         }
 
@@ -23,6 +24,12 @@ namespace POSTOFFICE3
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
 
 namespace POSTOFFICE3
 {
@@ -21,10 +22,41 @@ namespace POSTOFFICE3
 		{
             if (Session["username"] == null)
             {
-                Response.Redirect("Home.aspx");
+                dashboardcheck.NavigateUrl = "Home.aspx";
+                dashboardcheck.Text = "Home";
+
             }
-            username = Session["username"].ToString();
-            logText.Text = "Currently logged in as: " + Session["username"];
+            else
+            {
+                username = Session["username"].ToString();
+                loggedin.Text = "Currently logged in as: " + Session["username"];
+                var email = new EmailAddressAttribute();
+                bool isEmail;
+                isEmail = email.IsValid(username);
+                if (isEmail == true)
+                {
+                    dashboardcheck.NavigateUrl = "Dashboard.aspx";
+                    dashboardcheck.Text = "Dashboard";
+
+                }
+                else
+                {
+                    int employeecheck;
+                    int.TryParse(username, out employeecheck);
+                    if (employeecheck == 0)
+                    {
+                        dashboardcheck.NavigateUrl = "Home.aspx";
+                        dashboardcheck.Text = "Home";
+
+                    }
+                    else
+                    {
+                        dashboardcheck.NavigateUrl = "EmployeeDashboard.aspx";
+                        dashboardcheck.Text = "Employee Dashboard";
+                    }
+                }
+            }
+            
         }
 
         protected void TrackPackage_Click(object sender, EventArgs e)
@@ -118,6 +150,12 @@ namespace POSTOFFICE3
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }
