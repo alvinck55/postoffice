@@ -42,13 +42,24 @@
             <a href="Cancel.aspx" class="btn btn-primary btn-sm btn-block" role="button">Cancel a Package</a><br />
             <br />
             <br />
+            <asp:Label ID="Label12" runat="server" Text="Packages Currently in Transit: " Font-Size="X-Large"></asp:Label>
             <br />
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
                 <AlternatingRowStyle BackColor="#F7F7F7" />
                 <Columns>
                     <asp:BoundField DataField="Tracking_no" HeaderText="Tracking Number" SortExpression="Tracking_no" />
-                    <asp:BoundField DataField="Last_updated" HeaderText="Last Updated" SortExpression="Last_updated" />
+                    <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
+                    <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
+                    <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
+                    <asp:BoundField DataField="Receiver_Fname" HeaderText="Receiver First Name" SortExpression="Receiver_Fname" />
+                    <asp:BoundField DataField="Receiver_Lname" HeaderText="Receiver Last Name" SortExpression="Receiver_Lname" />
+                    <asp:BoundField DataField="Street" HeaderText="Receiver Address" SortExpression="Street" />
+                    <asp:BoundField DataField="State" HeaderText="Receiver State" SortExpression="State" />
+                    <asp:BoundField DataField="City" HeaderText="Receiver City" SortExpression="City" />
+                    <asp:BoundField DataField="Zip" HeaderText="Receiver Zip" SortExpression="Zip" />
+                    
                     <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                    <asp:BoundField DataField="Last_updated" HeaderText="Date Sent" SortExpression="Last_updated" />
                 </Columns>
                 <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
                 <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
@@ -60,10 +71,11 @@
                 <SortedDescendingCellStyle BackColor="#D8D8F0" />
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT  p.Tracking_no, p.Last_updated, t.Status
-FROM PACKAGE p, TRACKING t, CUSTOMER c
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT  p.Tracking_no, p.Cost,p.Weight,p.Priority,p.Receiver_Fname,p.Receiver_Lname,a.Street,a.State,a.City,a.Zip,t.Status, p.Last_updated
+FROM PACKAGE p, TRACKING t, CUSTOMER c,ADDRESS a
 WHERE p.Sender_ID = t.Sender_ID
 AND p.Package_ID = t.Package_ID
+AND a.Address_ID = p.Receiver_Address_ID
 AND t.Status &lt;&gt; 'D'
 AND t.Status &lt;&gt; 'R'
 AND p.Sender_ID=c.Customer_ID

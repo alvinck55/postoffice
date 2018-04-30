@@ -25,6 +25,8 @@ namespace POSTOFFICE3
 
 
             }
+            this.Form.DefaultButton = this.Button1.UniqueID;
+
             username = Session["username"].ToString();
             loggedin.Text = "Employee ID: " + Session["username"];
 

@@ -18,6 +18,8 @@ namespace POSTOFFICE3
         protected void Page_Load(object sender, EventArgs e)
         {
             string username;
+            this.Form.DefaultButton = this.Button1.UniqueID;
+
             if (Session["username"] == null)
             {
                 Response.Redirect("Home.aspx");

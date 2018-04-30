@@ -26,6 +26,8 @@ namespace POSTOFFICE3
 
             }
             username = Session["username"].ToString();
+            loggedin.Text = "Currently logged in as: " + Session["username"];
+
             try
             {
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
@@ -142,6 +144,12 @@ namespace POSTOFFICE3
                 Label1.Text = "Please ensure all fields are filled in correctly";
             }
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }
