@@ -35,6 +35,9 @@
                 <asp:Label ID="statusMessage" Text="Please enter username and password" runat="server" />
                 <p></p>
                 <a href="Registration.aspx">Registration</a> 
+                <p></p>
+                <a href="Tracking.aspx" class="btn btn-primary btn-lg active" role="button">Track a Package</a>
+
             </div>
 
 

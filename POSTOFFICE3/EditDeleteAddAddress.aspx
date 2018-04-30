@@ -10,6 +10,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <nav class="navbar navbar-dark" style="background-color: #471268">
+              <a class="navbar-brand navbar-left" href="Dashboard.aspx">Dashboard</a>
+            <asp:Label ID="loggedin" Text="" class="navbar-text navbar-center" runat="server" />
+
+          
+            <asp:Button ID="btnLogout" runat="server" Text="Logout" class="btn btn-danger" OnClick="btnLogout_Click" />
+
+        </nav>
         <h1>Add,Edit,Or Delete Addresses</h1>
         <p>
             <asp:LinkButton ID="LinkButton1" runat="server" style="font-size: x-large" PostBackUrl="AddAddress.aspx">Add a new address</asp:LinkButton>

@@ -25,6 +25,8 @@ namespace POSTOFFICE3
 
             }
             username = Session["username"].ToString();
+            loggedin.Text = "Employee ID: " + Session["username"];
+
             try
             {
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
@@ -56,6 +58,12 @@ namespace POSTOFFICE3
                 Label1.Text = "ERROR FOR USERNAME LOGIN";
             }
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

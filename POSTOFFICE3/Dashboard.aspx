@@ -19,7 +19,7 @@
             <asp:Button ID="btnLogout" runat="server" Text="Logout" class="btn btn-danger" OnClick="btnLogout_Click" />
 
         </nav>
-        
+        <div class="container-fluid">
        
         
         <div class="col-md-4">
@@ -78,6 +78,7 @@ ORDER by p.Last_updated DESC">
             <br />
             <br />
         </div>
+            </div>
     </form>
 </body>
 </html>

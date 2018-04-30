@@ -24,6 +24,8 @@ namespace POSTOFFICE3
 
 
             }
+            loggedin.Text = "Employee ID: " + Session["username"];
+
             username = Session["username"].ToString();
             try
             {
@@ -87,6 +89,12 @@ namespace POSTOFFICE3
                 Label1.Text = "Please ensure all fields are filled";
             }
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

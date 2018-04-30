@@ -26,6 +26,8 @@ namespace POSTOFFICE3
             {
                 Response.Redirect("Home.aspx");
             }
+            loggedin.Text = "Currently logged in as: " + Session["username"];
+
             username = Session["username"].ToString();
             logText.Text = "Currently logged in as: " + Session["username"];
             try
@@ -380,6 +382,12 @@ namespace POSTOFFICE3
                 S_PostalCode_TextBox.BackColor = System.Drawing.Color.White;
                 DropDownList3.BackColor = System.Drawing.Color.White;
             }
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

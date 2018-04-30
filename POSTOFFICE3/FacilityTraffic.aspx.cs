@@ -25,6 +25,8 @@ namespace POSTOFFICE3
 
             }
             username = Session["username"].ToString();
+            loggedin.Text = "Employee ID: " + Session["username"];
+
             try
             {
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
@@ -82,6 +84,12 @@ namespace POSTOFFICE3
         {
             TextBox2.Text = Calendar1.SelectedDate.ToLongDateString();
             Calendar1.Visible = false;
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }
