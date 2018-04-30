@@ -39,9 +39,10 @@ AND t.Status &lt;&gt; 'R'
 AND p.Sender_ID=c.Customer_ID
 AND c.Customer_ID=9
 AND s.Status_ID = t.Status;" UpdateCommand="UPDATE [TRACKING]
-SET [Failed_to_deliver] = @Failed_to_deliver, [Status} = @Status">
+SET [Failed_to_deliver] = @Failed_to_deliver, [Status] = @Status">
             <UpdateParameters>
                 <asp:Parameter Name="Failed_to_deliver" />
+                <asp:Parameter Name="Status" />
             </UpdateParameters>
         </asp:SqlDataSource>
         <br />
