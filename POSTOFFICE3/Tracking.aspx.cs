@@ -20,6 +20,8 @@ namespace POSTOFFICE3
 
         protected void Page_Load(object sender, EventArgs e)
 		{
+            this.Form.DefaultButton = this.Button1.UniqueID;
+
             if (Session["username"] == null)
             {
                 dashboardcheck.NavigateUrl = "Home.aspx";
@@ -154,6 +156,7 @@ namespace POSTOFFICE3
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            
             Session.Abandon();
             Response.Redirect("Home.aspx");
         }
