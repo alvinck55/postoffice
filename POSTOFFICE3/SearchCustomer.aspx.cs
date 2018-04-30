@@ -140,5 +140,10 @@ namespace POSTOFFICE3
             Session.Abandon();
             Response.Redirect("Home.aspx");
         }
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

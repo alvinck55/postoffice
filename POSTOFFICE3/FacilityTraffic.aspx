@@ -186,16 +186,16 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
             <Columns>
                 <asp:BoundField DataField="Column1" HeaderText="Packages Cancelled" ReadOnly="True" SortExpression="Column1" />
             </Columns>
-        </asp:GridView> </td> <td>        <asp:GridView ID="GridView12" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource12">
+        </asp:GridView> </td> <td>        <asp:GridView ID="GridView12" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource12" OnSelectedIndexChanged="GridView12_SelectedIndexChanged">
             <Columns>
-                <asp:BoundField DataField="Column1" HeaderText="Packages In Transit" ReadOnly="True" SortExpression="Column1" />
+                <asp:BoundField DataField="Column1" HeaderText="Total Packages In Transit" ReadOnly="True" SortExpression="Column1" />
             </Columns>
         </asp:GridView> </td> <td>        <asp:GridView ID="GridView13" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource13">
             <Columns>
                 <asp:BoundField DataField="Column1" HeaderText="Packages Returned" ReadOnly="True" SortExpression="Column1" />
             </Columns>
         </asp:GridView> </td></tr></table><br />
-        <table><tr> <td>        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+        <table><tr> <td>        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField DataField="Package_ID" HeaderText="Package ID" SortExpression="Package_ID" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="Tracking_no" HeaderText="Tracking Number" SortExpression="Tracking_no" InsertVisible="False" ReadOnly="True" />
@@ -205,11 +205,16 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
                 <asp:BoundField DataField="State" HeaderText="Sender State" SortExpression="State" />
                 <asp:BoundField DataField="City" HeaderText="Sender City" SortExpression="City" />
                 <asp:BoundField DataField="Street" HeaderText="Sender Street" SortExpression="Street" />
+                <asp:BoundField DataField ="Zip" HeaderText ="Sender Zip" SortExpression="Zip" />
                 <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
                 <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
                 <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
                 <asp:BoundField DataField="Receiver_Fname" HeaderText="Receiver First Name" SortExpression="Receiver_Fname" />
                 <asp:BoundField DataField="Receiver_Lname" HeaderText="Receiver Last Name" SortExpression="Receiver_Lname" />
+                <asp:BoundField DataField="Street1" HeaderText="Destination Street" SortExpression="Street1" />
+                <asp:BoundField DataField="City1" HeaderText="Destination City" SortExpression="City1" />
+                <asp:BoundField DataField="State1" HeaderText="Destination State" SortExpression="State1" />
+                <asp:BoundField DataField="Zip1" HeaderText="Destination Zip" SortExpression="Zip1" />
             </Columns>
             <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
             <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
@@ -220,23 +225,7 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
             <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
             <SortedDescendingCellStyle BackColor="#D8D8F0" />
             <SortedDescendingHeaderStyle BackColor="#3E3277" />
-        </asp:GridView></td><td>        <asp:GridView ID="GridView2" runat="server" style="margin-bottom: 0px; margin-right: 0px;" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
-                <AlternatingRowStyle BackColor="#F7F7F7" />
-                <Columns>
-                    <asp:BoundField DataField="State" HeaderText="Receiver Address State" SortExpression="State" />
-                    <asp:BoundField DataField="City" HeaderText="Receiver Address City" SortExpression="City" />
-                    <asp:BoundField DataField="Street" HeaderText="Receiver Address " SortExpression="Street" />
-                </Columns>
-                <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
-                <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
-                <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
-                <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
-                <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
-                <SortedAscendingCellStyle BackColor="#F4F4FD" />
-                <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
-                <SortedDescendingCellStyle BackColor="#D8D8F0" />
-                <SortedDescendingHeaderStyle BackColor="#3E3277" />
-        </asp:GridView>
+        </asp:GridView></td><td>        
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT ADDRESS.State, ADDRESS.City, ADDRESS.Street FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Receiver_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
 SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end)">
                     <SelectParameters>
@@ -259,7 +248,7 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
 
         <br />
         <br />
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID,TRACKING.Tracking_no,Package.Sender_ID, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority, PACKAGE.Receiver_Fname, PACKAGE.Receiver_Lname FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID,TRACKING.Tracking_no,Package.Sender_ID, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, ADDRESS.Zip,PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority, PACKAGE.Receiver_Fname, PACKAGE.Receiver_Lname,b.State,b.City,b.Street,b.Zip FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING,ADDRESS b WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND b.Address_ID = PACKAGE.Receiver_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
 SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end)">
             <SelectParameters>
 <asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="facilityID" DefaultValue=""></asp:ControlParameter>

@@ -63,11 +63,12 @@
         <asp:Button ID="Button2" runat="server" class="btn btn-primary" Text="Search" OnClick="Button2_Click" />
         <br />
             </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT         p.Tracking_no, p.Receiver_Fname,p.Receiver_Lname, a.Street, a.State, a.City, a.Zip, t.Type, p.Weight, r.Priority, p.Last_updated
-            FROM PACKAGE p, CUSTOMER c, TYPE t, PRIORITY r, ADDRESS a
+        &nbsp;&nbsp;&nbsp;&nbsp;<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT         p.Tracking_no, p.Receiver_Fname,p.Receiver_Lname, a.Street, a.State, a.City, a.Zip, t.Type, p.Weight, r.Priority, p.Last_updated, b.Street,b.State,b.City,b.Zip
+            FROM PACKAGE p, CUSTOMER c, TYPE t, PRIORITY r, ADDRESS a,ADDRESS b
             WHERE
         p.Sender_ID=c.Customer_ID
 AND a.Address_ID = p.Receiver_Address_ID
+AND b.Address_ID = p.Sender_Address_ID
             AND c.Customer_ID=@customerid
             AND p.Types = t.Type_ID
             AND p.Priority = r.Priority_ID
@@ -76,7 +77,7 @@ AND a.Address_ID = p.Receiver_Address_ID
                 <asp:ControlParameter ControlID="TextBox6" Name="customerid" PropertyName="Text" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <table><tr> <td>        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
+        <table><tr> <td>        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="#F7F7F7" />
             <Columns>
                 <asp:BoundField DataField="Tracking_no" HeaderText="Tracking Number" SortExpression="Tracking_no" />
@@ -90,6 +91,10 @@ AND a.Address_ID = p.Receiver_Address_ID
                 <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
                 <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
                 <asp:BoundField DataField="Last_updated" HeaderText="Last Updated" SortExpression="Last_updated" />
+                <asp:BoundField DataField="Street1" HeaderText="Sender Street" SortExpression="Street1" />
+                <asp:BoundField DataField="City1" HeaderText="Sender City" SortExpression="City1" />
+                <asp:BoundField DataField="State1" HeaderText="Sender State" SortExpression="State1" />
+                <asp:BoundField DataField="Zip1" HeaderText="Sender Zip" SortExpression="Zip1" />
             </Columns>
             <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
             <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
@@ -100,24 +105,7 @@ AND a.Address_ID = p.Receiver_Address_ID
             <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
             <SortedDescendingCellStyle BackColor="#D8D8F0" />
             <SortedDescendingHeaderStyle BackColor="#3E3277" />
-            </asp:GridView> </td><td><asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
-                <AlternatingRowStyle BackColor="#F7F7F7" />
-            <Columns>
-                <asp:BoundField DataField="Street" HeaderText="Sender Street" SortExpression="Street" />
-                <asp:BoundField DataField="State" HeaderText="Sender State" SortExpression="State" />
-                <asp:BoundField DataField="City" HeaderText="Sender City" SortExpression="City" />
-                <asp:BoundField DataField="Zip" HeaderText="Sender Zip" SortExpression="Zip" />
-            </Columns>
-                <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
-                <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
-                <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
-                <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
-                <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
-                <SortedAscendingCellStyle BackColor="#F4F4FD" />
-                <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
-                <SortedDescendingCellStyle BackColor="#D8D8F0" />
-                <SortedDescendingHeaderStyle BackColor="#3E3277" />
-        </asp:GridView> </td></tr></table>
+            </asp:GridView> </td><td>&nbsp;</td></tr></table>
 
         <br />
         <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT       a.Street, a.State, a.City, a.Zip

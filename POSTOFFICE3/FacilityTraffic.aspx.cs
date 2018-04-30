@@ -91,5 +91,15 @@ namespace POSTOFFICE3
             Session.Abandon();
             Response.Redirect("Home.aspx");
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridView12_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
