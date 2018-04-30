@@ -91,7 +91,7 @@
         <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
         <br />
         <br />
-        <a href="Dashboard.aspx">Dashboard</a>
+        
     </form>
 </body>
 </html>

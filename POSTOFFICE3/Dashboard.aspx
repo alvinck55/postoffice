@@ -22,7 +22,7 @@
         <div class="container-fluid">
        
         
-        <div class="col-md-4">
+        <div class="col-md-6">
             
             <br />
             <br />

@@ -65,6 +65,6 @@ ORDER BY p.Last_updated DESC
         </asp:GridView>
         <br />
     </form>
-    <a href="Dashboard.aspx">Dashboard</a>
+  
 </body>
 </html>

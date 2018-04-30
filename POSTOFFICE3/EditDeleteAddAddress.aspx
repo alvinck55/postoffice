@@ -20,10 +20,11 @@
         </nav>
         <h1>Add,Edit,Or Delete Addresses</h1>
         <p>
-            <asp:LinkButton ID="LinkButton1" runat="server" style="font-size: x-large" PostBackUrl="AddAddress.aspx">Add a new address</asp:LinkButton>
+            <asp:LinkButton ID="LinkButton1" runat="server" class="btn btn-primary btn-lg" style="font-size: x-large" PostBackUrl="AddAddress.aspx">Add a new address</asp:LinkButton>
         </p>
         <p>
-            <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataKeyNames="Address_ID" DataSourceID="SqlDataSource1">
+            <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataKeyNames="Address_ID" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
+                <AlternatingRowStyle BackColor="#F7F7F7" />
                 <Columns>
                      <asp:BoundField DataField="Address_ID" HeaderText="Address_ID"  InsertVisible="False" ReadOnly="True" SortExpression="Address_ID" />
                     <asp:BoundField DataField="Street" HeaderText="Street" SortExpression="Street" />
@@ -34,6 +35,15 @@
                     <asp:CommandField ShowEditButton="True" />
                      <asp:CommandField ShowDeleteButton="True" />
                 </Columns>
+                <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+                <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+                <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
+                <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+                <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+                <SortedAscendingCellStyle BackColor="#F4F4FD" />
+                <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
+                <SortedDescendingCellStyle BackColor="#D8D8F0" />
+                <SortedDescendingHeaderStyle BackColor="#3E3277" />
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" DeleteCommand="DELETE FROM [CUSTOMER_ADDRESS] WHERE [Address_ID] = @Address_ID AND [Customer_ID] = @Customer_ID" SelectCommand="SELECT ADDRESS.Address_ID, ADDRESS.Street, ADDRESS.State, ADDRESS.City, ADDRESS.Zip, ADDRESS.aptn FROM ADDRESS WHERE ADDRESS.Address_ID in (SELECT CUSTOMER_ADDRESS.Address_ID FROM CUSTOMER_ADDRESS WHERE CUSTOMER_ADDRESS.Customer_ID = @customerid)" UpdateCommand= "UPDATE [ADDRESS] SET [Street] = @Street, [City] = @City, [State] = @State, [Zip] = @Zip, [aptn] = @aptn WHERE [Address_ID] = @Address_ID">
                 <DeleteParameters>
@@ -59,7 +69,7 @@
         <p>
             &nbsp;</p>
         <p>
-            <a href="Dashboard.aspx">Dashboard</a></p>
+          
         <p>
             &nbsp;</p>
         <p>

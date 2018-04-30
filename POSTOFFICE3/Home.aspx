@@ -20,7 +20,7 @@
     <form id="form1" runat="server">
         <div>
             <div class="container-fluid">
-                <div class ="jumbotron" style="border:2px solid aquamarine; box-shadow:1px 2px 5px #ccc">
+                <div class ="jumbotron text-center" style="border:2px solid #811984; box-shadow:1px 2px 5px #ccc">
                     <h1>Welcome to the Post Office Database.</h1>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <p>Password: </p>
                 <asp:TextBox ID="passwordText" Text="Enter password here" CssClass="form-control" TextMode ="Password" runat="server" />
                 <p></p>
-                <asp:Button ID="submitButton" Text="Sign in" runat="server" CssClass="btn btn-primary" OnClick="submitEventMethod"/>
+                <asp:Button ID="submitButton" Text="Sign in" runat="server" CssClass="btn btn-success" OnClick="submitEventMethod"/>
                 <p></p>
                 <asp:Label ID="statusMessage" Text="Please enter username and password" runat="server" />
                 <p></p>
