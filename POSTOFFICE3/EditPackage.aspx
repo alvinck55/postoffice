@@ -30,7 +30,7 @@
             <span class="auto-style1"><strong>PRIORITY KEY: </strong></span>
             <br />
             <span class="auto-style1"><strong>FC</strong></span> =<span class="auto-style1"> </span>First Class <span class="auto-style1"><strong>PE</strong></span> = Priority Mail Express <span class="auto-style1"><strong>PM</strong></span> = Priority Mail <span class="auto-style1"><strong>RG</strong></span> = Retail Ground</div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Package_ID" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" >
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Package_ID" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:CommandField ShowEditButton="True" />
                 <asp:BoundField DataField="Package_ID" HeaderText="Package ID"  InsertVisible="False" ReadOnly="True" SortExpression="Package_ID" />
