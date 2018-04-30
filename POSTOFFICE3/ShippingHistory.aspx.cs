@@ -26,7 +26,7 @@ namespace POSTOFFICE3
                 Response.Redirect("Home.aspx");
             }
             username = Session["username"].ToString();
-            logText.Text = "Currently logged in as: " + Session["username"];
+            loggedin.Text = "Currently logged in as: " + Session["username"];
 
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
             conn = new SqlConnection(connectionString);
@@ -108,6 +108,12 @@ namespace POSTOFFICE3
             SqlDataReader dataReader;
             dataReader = command.ExecuteReader();
             return dataReader;
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

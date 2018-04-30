@@ -10,9 +10,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            
-        </div>
+         <nav class="navbar navbar-dark" style="background-color: #116845">
+              <a class="navbar-brand navbar-left" href="EmployeeDashboard.aspx">Employee Dashboard</a>
+            <asp:Label ID="loggedin" Text="" class="navbar-text navbar-center" runat="server" />
+
+          
+            <asp:Button ID="btnLogout" runat="server" Text="Logout" class="btn btn-danger" OnClick="btnLogout_Click" />
+
+        </nav>
         <asp:Label ID="Label1" runat="server" style="font-size: xx-large; font-weight: 700" Text="Label"></asp:Label>
         <br />
         <asp:DropDownList ID="DropDownList1" runat="server">

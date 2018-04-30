@@ -25,6 +25,8 @@ namespace POSTOFFICE3
 
 
             }
+            loggedin.Text = "Currently logged in as: " + Session["username"];
+
             username = Session["username"].ToString();
             try
             {
@@ -166,6 +168,12 @@ namespace POSTOFFICE3
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

@@ -24,6 +24,8 @@ namespace POSTOFFICE3
 
             }
             username = Session["username"].ToString();
+            loggedin.Text = "Currently logged in as: " + Session["username"];
+
             try
             {
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PostOffice"].ToString();
@@ -61,6 +63,12 @@ namespace POSTOFFICE3
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

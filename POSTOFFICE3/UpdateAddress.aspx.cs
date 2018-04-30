@@ -22,7 +22,7 @@ namespace POSTOFFICE3
 
 
             }
-            logText.Text = "Currently logged in as: " + Session["username"];
+            loggedin.Text = "Currently logged in as: " + Session["username"];
             if (!IsPostBack)
             {
                 fillGrid();
@@ -96,6 +96,12 @@ namespace POSTOFFICE3
             }
 
 
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }
