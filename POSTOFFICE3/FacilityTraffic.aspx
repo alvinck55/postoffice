@@ -14,14 +14,16 @@
             
         </div>
         <asp:Label ID="Label1" runat="server" style="font-size: xx-large; font-weight: 700" Text="Label"></asp:Label>
+        <table><tr> <td> <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged1" Visible="false"></asp:Calendar></td> <td> 
+            <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" Visible="false"></asp:Calendar>
+            </td></tr></table>
+        
         <br />
-        <asp:DropDownList ID="DropDownList1" runat="server">
-            <asp:ListItem Value="-30">Last 30 days</asp:ListItem>
-            <asp:ListItem Value="-60">Last 60 days</asp:ListItem>
-            <asp:ListItem Value="-90">Last 90 days</asp:ListItem>
-            <asp:ListItem Value="-999">All Time</asp:ListItem>
-        </asp:DropDownList>
-        <br />
+        Start Date: <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+&nbsp;<asp:LinkButton ID="lnkpickdate" runat="server" OnClick="lnkpickdate_Click">Get Date</asp:LinkButton>
+&nbsp;End Date:
+        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+        <asp:LinkButton ID="lnkpickdate1" runat="server" OnClick="lnkpickdate1_Click">Get Date</asp:LinkButton>
         <br />
         <table><tr> <td>        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
             <AlternatingRowStyle BackColor="#F7F7F7" />
@@ -39,10 +41,11 @@
             <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Types = 'EE')">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end) AND PACKAGE.Types = 'EE')">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="TextBox1" DefaultValue="" Name="facilityID" PropertyName="Text" />
-                    <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                    <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                 </SelectParameters>
             </asp:SqlDataSource>
             </td> <td>        <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
@@ -61,10 +64,11 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Types = 'LE')">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end) AND PACKAGE.Types = 'LE')">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                        <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             </td> <td>        <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource5" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
@@ -83,10 +87,11 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Priority = 'FC')">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end) AND PACKAGE.Priority = 'FC')">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                        <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             </td> <td>        <asp:GridView ID="GridView6" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource6" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
@@ -105,10 +110,11 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Priority = 'PE')">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end) AND PACKAGE.Priority = 'PE')">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                        <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             </td> <td>        <asp:GridView ID="GridView7" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource7" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
@@ -127,10 +133,11 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Priority = 'PM')">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end) AND PACKAGE.Priority = 'PM')">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                        <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             </td> <td>        <asp:GridView ID="GridView8" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource8" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
@@ -149,10 +156,11 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())) AND PACKAGE.Priority = 'RG')">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end) AND PACKAGE.Priority = 'RG')">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32"/>
+                        <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate"/>
+                        <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             </td>   </tr></table>
@@ -225,10 +233,11 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT ADDRESS.State, ADDRESS.City, ADDRESS.Street FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Receiver_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate()))">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end)">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                        <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                        <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             </td> </tr></table>
@@ -246,56 +255,62 @@ SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPIN
         <br />
         <br />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT PACKAGE.Package_ID,TRACKING.Tracking_no,Package.Sender_ID, CUSTOMER.Fname, CUSTOMER.Lname, ADDRESS.State, ADDRESS.City, ADDRESS.Street, PACKAGE.Cost, PACKAGE.Weight, PACKAGE.Priority, PACKAGE.Receiver_Fname, PACKAGE.Receiver_Lname FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate()))">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end)">
             <SelectParameters>
 <asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="facilityID" DefaultValue=""></asp:ControlParameter>
-                <asp:ControlParameter ControlID="DropDownList1" Name="days" PropertyName="SelectedValue" DefaultValue="-30" Type="Int32" />
+                <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
             </SelectParameters>
         </asp:SqlDataSource>
         <p>
             <asp:TextBox ID="TextBox1" visible="false" runat="server" Text="1"></asp:TextBox>
  
             <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'D' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'D' AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end))">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                    <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                    <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                 </SelectParameters>
             </asp:SqlDataSource>
 
             <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'F' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'F' AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end))">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                    <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                    <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                 </SelectParameters>
             </asp:SqlDataSource>
         </p>
         <p>
 
             <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'C' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'C' AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end))">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                    <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                    <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
                 </SelectParameters>
             </asp:SqlDataSource>
         </p>
         <a href="EmployeeDashboard.aspx">Employee Dashboard</a>
 
         <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'T' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'T' AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end))">
             <SelectParameters>
                 <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
             </SelectParameters>
         </asp:SqlDataSource>
 
         <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT COUNT(PACKAGE.Package_ID) FROM PACKAGE WHERE PACKAGE.Package_ID in (SELECT PACKAGE.Package_ID FROM CUSTOMER,ADDRESS,PACKAGE,TRACKING WHERE CUSTOMER.Customer_ID = PACKAGE.Sender_ID AND ADDRESS.Address_ID = PACKAGE.Sender_Address_ID AND PACKAGE.Package_ID = TRACKING.Package_ID AND TRACKING.Tracking_no in (
-SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'R' AND SHIPPING_HISTORY.Last_updated &gt;= DATEADD(day,@days, getdate())))">
+SELECT DISTINCT SHIPPING_HISTORY.Tracking_no FROM SHIPPING_HISTORY WHERE SHIPPING_HISTORY.Facility_ID=@facilityID AND SHIPPING_HISTORY.Status = 'R' AND SHIPPING_HISTORY.Last_updated BETWEEN @start AND @end))">
             <SelectParameters>
                 <asp:ControlParameter ControlID="TextBox1" Name="facilityID" PropertyName="Text" />
-                <asp:ControlParameter ControlID="DropDownList1" DefaultValue="-30" Name="days" PropertyName="SelectedValue" Type="Int32" />
+                <asp:ControlParameter ControlID="Calendar1" Name="start" PropertyName="SelectedDate" />
+                <asp:ControlParameter ControlID="Calendar2" Name="end" PropertyName="SelectedDate" />
             </SelectParameters>
         </asp:SqlDataSource>
 

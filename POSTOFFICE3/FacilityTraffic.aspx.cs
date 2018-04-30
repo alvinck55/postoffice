@@ -56,6 +56,32 @@ namespace POSTOFFICE3
                 Label1.Text = "ERROR FOR USERNAME LOGIN";
             }
         }
-        
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkpickdate_Click(object sender, EventArgs e)
+        {
+            Calendar1.Visible = true;
+        }
+
+        protected void lnkpickdate1_Click(object sender, EventArgs e)
+        {
+            Calendar2.Visible = true;
+        }
+
+        protected void Calendar2_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBox3.Text = Calendar2.SelectedDate.ToLongDateString();
+            Calendar2.Visible = false;
+        }
+
+        protected void Calendar1_SelectionChanged1(object sender, EventArgs e)
+        {
+            TextBox2.Text = Calendar1.SelectedDate.ToLongDateString();
+            Calendar1.Visible = false;
+        }
     }
 }
