@@ -287,7 +287,7 @@ namespace POSTOFFICE3
                 command.Parameters.AddWithValue("@senderid", senderID);
                 command.Parameters.AddWithValue("@fname", TextBox8.Text);
                 command.Parameters.AddWithValue("@lname", TextBox9.Text);
-                if (DropDownList1.SelectedItem.Value.ToString() == "CP")
+                if (DropDownList1.SelectedItem.Value.ToString() == "EE")
                 {
                     command.Parameters.AddWithValue("@weight", Convert.ToDecimal(Weight_TextBox.Text));
                 }
