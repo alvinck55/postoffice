@@ -27,7 +27,8 @@
             <a href="PackageEntry.aspx">Create a Shipping Label</a>
             <br />
             <a href="SearchPackage.aspx">Search your packages</a><br />
-            <a href="CustomerAddressSearch.aspx">Address Shipping History</a> <br />
+            <a href="CustomerAddressSearch.aspx">Address Shipping History</a><br />
+            <a href="Cancel.aspx">Cancel a Package</a><br />
             <br />
             <br />
             <br />
