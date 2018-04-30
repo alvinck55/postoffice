@@ -39,7 +39,6 @@
             <br />
             <a href="SearchPackage.aspx" class="btn btn-primary btn-sm  btn-block" role="button">Search your packages</a><br />
             <a href="CustomerAddressSearch.aspx" class="btn btn-primary btn-sm btn-block" role="button">Address Shipping History</a><br />
-            <a href="Cancel.aspx" class="btn btn-primary btn-sm btn-block" role="button">Cancel a Package</a><br />
             <br />
             <br />
             <asp:Label ID="Label12" runat="server" Text="Packages Currently in Transit: " Font-Size="X-Large"></asp:Label>

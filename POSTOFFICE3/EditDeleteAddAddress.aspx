@@ -26,7 +26,7 @@
             <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataKeyNames="Address_ID" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
                 <AlternatingRowStyle BackColor="#F7F7F7" />
                 <Columns>
-                     <asp:BoundField DataField="Address_ID" HeaderText="Address_ID"  InsertVisible="False" ReadOnly="True" SortExpression="Address_ID" />
+                     <asp:BoundField DataField="Address_ID" HeaderText="Address_ID"  InsertVisible="False" ReadOnly="True" SortExpression="Address_ID" Visible="False" />
                     <asp:BoundField DataField="Street" HeaderText="Street" SortExpression="Street" />
                     <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
                     <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
