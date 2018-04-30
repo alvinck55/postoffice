@@ -46,9 +46,14 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
                 <AlternatingRowStyle BackColor="#F7F7F7" />
                 <Columns>
-                    <asp:BoundField DataField="Tracking_no" HeaderText="Tracking Number" SortExpression="Tracking_no" />
-                    <asp:BoundField DataField="Last_updated" HeaderText="Last Updated" SortExpression="Last_updated" />
+                    <asp:BoundField DataField="Tracking_no" HeaderText="Tracking_no" SortExpression="Tracking_no" />
+                    <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
+                    <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
+                    <asp:BoundField DataField="Priority" HeaderText="Priority" SortExpression="Priority" />
+                    <asp:BoundField DataField="Receiver_Fname" HeaderText="Receiver_Fname" SortExpression="Receiver_Fname" />
+                    <asp:BoundField DataField="Receiver_Lname" HeaderText="Receiver_Lname" SortExpression="Receiver_Lname" />
                     <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                    <asp:BoundField DataField="Last_updated" HeaderText="Last_updated" SortExpression="Last_updated" />
                 </Columns>
                 <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
                 <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
@@ -60,7 +65,7 @@
                 <SortedDescendingCellStyle BackColor="#D8D8F0" />
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT  p.Tracking_no, p.Last_updated, t.Status
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT  p.Tracking_no, p.Cost,p.Weight,p.Priority,p.Receiver_Fname,p.Receiver_Lname, t.Status, p.Last_updated
 FROM PACKAGE p, TRACKING t, CUSTOMER c
 WHERE p.Sender_ID = t.Sender_ID
 AND p.Package_ID = t.Package_ID
