@@ -22,7 +22,7 @@
         <div class="container-fluid">
        
         
-        <div class="col-md-6">
+        <div class="col-md-4">
             
             <br />
             <br />
@@ -42,6 +42,7 @@
             <a href="Cancel.aspx" class="btn btn-primary btn-sm btn-block" role="button">Cancel a Package</a><br />
             <br />
             <br />
+            <asp:Label ID="Label12" runat="server" Text="Packages Currently in Transit: " Font-Size="X-Large"></asp:Label>
             <br />
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
                 <AlternatingRowStyle BackColor="#F7F7F7" />
