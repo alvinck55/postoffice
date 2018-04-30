@@ -11,6 +11,8 @@ namespace POSTOFFICE3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Form.DefaultButton = this.Button1.UniqueID;
+
             loggedin.Text = "Employee ID: " + Session["username"];
 
         }

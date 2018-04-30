@@ -22,7 +22,9 @@ namespace POSTOFFICE3
         string trackingNo;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["username"] == null)
+            this.Form.DefaultButton = this.Button1.UniqueID;
+
+            if (Session["username"] == null)
             {
                 Response.Redirect("Home.aspx");
             }
