@@ -26,7 +26,7 @@
             
             <br />
             <br />
-            <a href="UpdateAddress.aspx" class="btn btn-primary btn-sm btn-block" role="button">Update Primary Address</a>
+            <%--<a href="UpdateAddress.aspx" class="btn btn-primary btn-sm btn-block" role="button">Update Primary Address</a>--%>
             <br />
             <a href="EditDeleteAddAddress.aspx" class="btn btn-primary btn-sm btn-block" role="button">View/Edit Addresses</a>
             
