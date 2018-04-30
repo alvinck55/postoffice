@@ -25,20 +25,24 @@
                 <asp:BoundField DataField="Tracking_no" HeaderText="Tracking_no" SortExpression="Tracking_no" />
                 <asp:BoundField DataField="Last_updated" HeaderText="Last_updated" SortExpression="Last_updated" />
                 <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                <asp:BoundField DataField="Status1" HeaderText="Status1" SortExpression="Status1" />
+                <asp:CheckBoxField DataField="Failed_to_deliver" HeaderText="Failed_to_deliver" SortExpression="Failed_to_deliver" />
+                <asp:CommandField ShowEditButton="True" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT p.Package_ID, p.Tracking_no, p.Last_updated, s.Status
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSTOFFICE2ConnectionString %>" SelectCommand="SELECT p.Package_ID, p.Tracking_no, p.Last_updated, t.Status, s.Status, t.Failed_to_deliver
 FROM PACKAGE p, TRACKING t, CUSTOMER c, STATUS s
 WHERE p.Sender_ID = t.Sender_ID
 AND p.Package_ID = t.Package_ID
 AND t.Status &lt;&gt; 'D'
 AND t.Status &lt;&gt; 'R'
 AND p.Sender_ID=c.Customer_ID
-AND c.Customer_ID=@customerID
-AND s.Status_ID = t.Status;">
-            <SelectParameters>
-                <asp:ControlParameter ControlID="TextBox1" Name="customerID" PropertyName="Text" />
-            </SelectParameters>
+AND c.Customer_ID=9
+AND s.Status_ID = t.Status;" UpdateCommand="UPDATE [TRACKING]
+SET [Failed_to_deliver] = @Failed_to_deliver, [Status} = @Status">
+            <UpdateParameters>
+                <asp:Parameter Name="Failed_to_deliver" />
+            </UpdateParameters>
         </asp:SqlDataSource>
         <br />
         <br />
